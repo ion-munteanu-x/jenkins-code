@@ -1,3 +1,4 @@
+//@Library("rs-pipelines@feature/test") _
 node {
     timeout(time: 60, unit: 'MINUTES') {
             timestamps {
