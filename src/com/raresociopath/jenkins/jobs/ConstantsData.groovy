@@ -9,7 +9,5 @@ class ConstantsData {
 
     public String DeployKeyId = 'jenkins-deploy-key'
 
-    public String K8SPerfClusterAddress = 'api.k8s-cluster01.whbettingengine.com'
-
     public String HooksDirName = "hooks"
 }
