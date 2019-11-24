@@ -1,0 +1,19 @@
+node {
+    timeout(time: 60, unit: 'MINUTES') {
+            timestamps {
+                def cfg = [
+                        ref       : env.Dsl_Version,
+                        url       : "https://github.com/raresociopath/rs-jenkins-jobs.git",
+                        scmCredsId: env.SCM_CREDENTIALS_ID,
+                ]
+                doWork(cfg)
+            }
+    }
+}
+
+void doWork(cfg) {
+    stage("Do work") {
+        gitClone(cfg.url, cfg.ref, null, null)
+        jobDsl targets: 'jobs/**/*Jobs.groovy', additionalClasspath: 'src/'
+    }
+}

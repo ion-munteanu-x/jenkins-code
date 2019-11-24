@@ -1,0 +1,188 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url 'http://repo.jenkins-ci.org/releases/' }
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+}
+
+apply plugin: 'groovy'
+
+group = 'com.raresociopath.rare-jenkins-jobs'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url 'https://repo.jenkins-ci.org/releases' }
+    maven { url 'http://repo.jenkins-ci.org/releases/' }
+    maven { url "https://plugins.gradle.org/m2/" }
+}
+
+configurations {
+    testPlugins {}
+}
+
+sourceSets {
+    main {
+        groovy {
+            srcDirs = ['src']
+        }
+    }
+    customscripts {
+        groovy {
+            srcDirs = ['groovy-scripts']
+            compileClasspath += main.compileClasspath
+        }
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+    shared {
+        groovy {
+            srcDirs = ['vars']
+            compileClasspath += main.compileClasspath
+        }
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+    jobs {
+        groovy {
+            srcDirs = [
+                    'HelperJobs', 'Hooks', 'Internal', 'PerfTests', 'PerfTestsFromFatso',
+                    'PerfEnv', 'PRs', 'ResilienceTests', 'Build', 'Deploy', 'Playground',
+                    'Development', 'DockerImages', 'EC2', 'Periodic', 'ScalabilityTests',
+                    'UpgradeTests', 'DeveloperTools',
+            ].collect { "jobs/$it" }
+            compileClasspath += main.compileClasspath
+        }
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+    jenkinsfiles {
+        groovy {
+            srcDirs = [
+                    'PerfTests', 'PerfTestsFromFatso', 'ResilienceTests', 'HelperJobs', 'Internal', 'EC2', 'Playground',
+                    'DockerImages', 'PerfEnv', 'ScalabilityTests', 'UpgradeTests', 'DeveloperTools',
+            ].collect { "jenkinsfiles/$it" }
+            compileClasspath += main.compileClasspath
+        }
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+// Exclude buggy Xalan dependency this way the JRE default TransformerFactory is used
+// The xalan pulled in by htmlunit does not properly deal with spaces folder / job names
+configurations.all*.exclude group: 'xalan'
+
+dependencies {
+    compile fileTree(dir: 'lib', include: ['*.jar'])
+    compile 'org.gitlab:java-gitlab-api:4.0.0'
+    compile "org.jenkins-ci.main:jenkins-core:${jenkinsVersion}"
+    compile("org.jenkins-ci.main:jenkins-war:${jenkinsVersion}") {
+        exclude group: 'org.jenkins-ci.ui', module: 'bootstrap'
+    }
+    compile 'org.jenkins-ci.ui:ace-editor:1.1'
+
+    compile 'com.cloudbees:groovy-cps:1.24@jar'
+
+    compile 'org.jboss.resteasy:resteasy-client:3.5.1.Final'
+
+    compile 'org.codehaus.groovy:groovy-all:2.4.15'
+    compile "org.jenkins-ci.plugins:job-dsl-core:${jobDslVersion}@jar"
+
+    compile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    compile 'cglib:cglib-nodep:2.2.2' // used by Spock
+    compile 'com.google.code.gson:gson:2.8.2'
+
+    compile 'net.karneim:pojobuilder:4.2.2'
+
+    testCompile('org.jenkins-ci.main:jenkins-test-harness:2.33') {
+        exclude group: 'org.netbeans.modules', module: 'org-netbeans-insane'
+        // https://github.com/sheehan/job-dsl-gradle-example/issues/90
+    }
+
+    compile 'org.jenkins-ci.plugins:script-security:1.44@jar'
+
+    compile 'org.6wind.jenkins:lockable-resources:2.3@jar'
+
+    compile 'com.amazonaws:aws-java-sdk:1.11.354'
+    compile 'org.jenkins-ci.plugins:aws-credentials:1.23@jar'
+
+    compile "org.jenkins-ci.plugins:job-dsl:${jobDslVersion}@jar"
+    compile 'org.jenkins-ci.plugins:structs:1.13@jar'
+    compile 'org.jenkins-ci.plugins:cloudbees-folder:5.12@jar'
+    compile 'org.jenkins-ci.plugins:ssh-credentials:1.13@jar'
+    compile 'org.jenkins-ci.plugins:slack:2.14@jar'
+    compile 'org.jenkins-ci.plugins:display-url-api:2.2.0@jar'
+    compile 'org.jenkins-ci.plugins:build-user-vars-plugin:1.5@jar'
+
+    compile 'org.jenkins-ci.plugins:credentials:2.1.16@jar'
+    compile 'org.jenkins-ci.plugins:plain-credentials:1.4@jar'
+    compile 'org.jenkins-ci.plugins:gitlab-plugin:1.5.6@jar'
+    compile 'org.jenkins-ci.plugins:scm-api:+@jar'
+    compile 'org.jenkins-ci.plugins:http_request:+@jar'
+    compile 'org.jenkins-ci.plugins:docker-commons:+@jar'
+    compile 'org.jenkins-ci.plugins:docker-workflow:1.16@jar'
+    compile 'org.jenkins-ci.plugins:parameterized-trigger:2.35.2@jar'
+    compile 'org.jenkins-ci.plugins:dashboard-view:+@jar'
+    compile 'org.jenkins-ci.plugins:webhook-step:1.3@jar'
+
+    compile 'org.jenkins-ci.plugins:bitbucket:1.1.8@jar'
+    compile 'org.jenkins-ci.plugins:git:3.9.1@jar'
+    compile 'org.jenkins-ci.plugins:mercurial:2.4@jar'
+    compile 'org.eclipse.jgit:org.eclipse.jgit:5.1.1.201809181055-r'
+
+    compile 'org.jenkins-ci.plugins.workflow:workflow-support:+@jar'
+    compile 'org.jenkins-ci.plugins.workflow:workflow-job:+@jar'
+    compile 'org.jenkins-ci.plugins.workflow:workflow-cps:+@jar'
+    compile 'org.jenkins-ci.plugins.workflow:workflow-step-api:+@jar'
+    compile 'org.jenkins-ci.plugins.workflow:workflow-basic-steps:+@jar'
+    compile 'org.jenkins-ci.plugins.workflow:workflow-api:+@jar'
+    compile 'org.jenkins-ci.plugins.workflow:workflow-aggregator:+@jar'
+
+    compile 'de.taimos:pipeline-aws:+@jar'
+
+    compile 'org.jenkins-ci.plugins:throttle-concurrents:+@jar'
+
+    compile 'org.jenkins-ci.plugins:sbt:1.5@jar'
+    compile 'org.jenkins-ci.plugins:gatling:1.2.5@jar'
+    compile 'com.etas.jenkins.plugins:text-file-operations:1.3.2'
+    compile 'org.jvnet.hudson.plugins:groovy-postbuild:2.4.1@jar'
+    compile 'org.jenkins-ci.plugins:envinject:+@jar'
+    compile 'org.jenkins-ci.plugins:startup-trigger-plugin:2.9.3@jar'
+    compile 'org.jenkins-ci.plugins:groovy:+@jar'
+}
+
+task resolveTestPlugins(type: Copy) {
+    from configurations.testPlugins
+    into new File(sourceSets.test.output.resourcesDir, 'test-dependencies')
+    include '*.hpi'
+    include '*.jpi'
+    def mapping = [:]
+
+    doFirst {
+        configurations.testPlugins.resolvedConfiguration.resolvedArtifacts.each {
+            mapping[it.file.name] = "${it.name}.${it.extension}"
+        }
+    }
+    rename { mapping[it] }
+
+    doLast {
+        List<String> baseNames = source*.name.collect { mapping[it] }.collect { it[0..it.lastIndexOf('.') - 1] }
+        new File(destinationDir, 'index').setText(baseNames.join('\n'), 'UTF-8')
+    }
+}
+
+test {
+    dependsOn tasks.resolveTestPlugins
+    inputs.files sourceSets.jobs.groovy.srcDirs
+
+    // set build directory for Jenkins test harness, JENKINS-26331
+    systemProperty 'buildDirectory', project.buildDir.absolutePath
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.7'
+}
