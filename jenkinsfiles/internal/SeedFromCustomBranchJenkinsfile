@@ -18,7 +18,7 @@ void doWork(cfg) {
         envInfo()
         appendComment("Working with version <b>${cfg.ref}</b>")
 
-        gitClone(cfg.url, cfg.ref, cfg.scmCredsId, null)
+        gitClone(cfg.url, cfg.ref, null, null)
 
         cfg.isDevelopMerged = cfg.ref == 'develop' ? true : getShOutput("git merge-base --is-ancestor origin/develop origin/$cfg.ref && echo OK || echo NOT OK ") == "OK"
 
