@@ -12,8 +12,8 @@ String call(String repo) {
 //    info(ProductRepository.reposMapByName)
 
     if (cloneMethod == 'ssh') {
-        "git@${env.SCM_SERVER}:code-factory-group/${repo}.git".toString()
+        "git@${env.SCM_SERVER}:raresociopath/${repo}.git".toString()
     } else {
-        "https://${env.SCM_SERVER}/code-factory-group/${repo}.git".toString()
+        "https://${env.SCM_SERVER}/raresociopath/${repo}.git".toString()
     }
 }
