@@ -1,6 +1,5 @@
 package com.raresociopath.jenkins.jobs.dsl
 
-import com.raresociopath.jenkins.jobs.dsl.kubeconfig.KubeconfigSupport
 import javaposse.jobdsl.dsl.DslScriptException
 
 import static com.raresociopath.jenkins.models.StaticProductRepositories.JenkinsJobs
@@ -56,15 +55,4 @@ class ParamDSL {
         paramImpl('Dsl_Version', value ?: JenkinsJobs.defaultBranch, 'Jobs DSL version', delegate, null)
     }
 
-    static def clusterParam(delegate) {
-        clusterParam(null, null, delegate)
-    }
-
-    static def clusterParam(value, delegate) {
-        clusterParam(value, null, delegate)
-    }
-
-    static def clusterParam(value, note, delegate) {
-        KubeconfigSupport.clusterParamV2(delegate, value, note)
-    }
 }
