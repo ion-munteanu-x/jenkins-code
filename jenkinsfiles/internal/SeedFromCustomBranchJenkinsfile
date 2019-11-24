@@ -3,7 +3,7 @@ node {
             timestamps {
                 def cfg = [
                         ref       : env.Dsl_Version,
-                        url       : "https://github.com/raresociopath/rs-jenkins-jobs.git",
+                        url       : gitCloneUrl('rs-jenkins-jobs'),
                         scmCredsId: env.SCM_CREDENTIALS_ID,
                 ]
                 doWork(cfg)
@@ -13,7 +13,19 @@ node {
 
 void doWork(cfg) {
     stage("Do work") {
-        gitClone(cfg.url, cfg.ref, null, null)
+        deleteDir()
+        envInfo()
+        appendComment("Working with version <b>${cfg.ref}</b>")
+
+        gitClone(cfg.url, cfg.ref, cfg.scmCredsId, null)
+
+        cfg.isDevelopMerged = cfg.ref == 'develop' ? true : getShOutput("git merge-base --is-ancestor origin/develop origin/$cfg.ref && echo OK || echo NOT OK ") == "OK"
+
+        if (!cfg.isDevelopMerged) {
+            appendComment("Branch <b>$cfg.ref doesn't contain latest develop</b>")
+            error("Branch $cfg.ref doesn't contain latest develop")
+        }
+
         jobDsl targets: 'jobs/**/*Jobs.groovy', additionalClasspath: 'src/'
     }
 }
