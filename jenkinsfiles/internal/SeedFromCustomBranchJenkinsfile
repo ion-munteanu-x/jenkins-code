@@ -20,11 +20,11 @@ void doWork(cfg) {
 
         gitClone(cfg.url, cfg.ref, null, null)
 
-        cfg.isDevelopMerged = cfg.ref == 'develop' ? true : getShOutput("git merge-base --is-ancestor origin/develop origin/$cfg.ref && echo OK || echo NOT OK ") == "OK"
+        cfg.isMasterMerged = cfg.ref == 'master' ? true : getShOutput("git merge-base --is-ancestor origin/master origin/$cfg.ref && echo OK || echo NOT OK ") == "OK"
 
-        if (!cfg.isDevelopMerged) {
-            appendComment("Branch <b>$cfg.ref doesn't contain latest develop</b>")
-            error("Branch $cfg.ref doesn't contain latest develop")
+        if (!cfg.isMasterMerged) {
+            appendComment("Branch <b>$cfg.ref doesn't contain latest master</b>")
+            error("Branch $cfg.ref doesn't contain latest master")
         }
 
         jobDsl targets: 'jobs/**/*Jobs.groovy', additionalClasspath: 'src/'
