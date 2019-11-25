@@ -14,7 +14,7 @@ class WHParams extends DSLParams {
 
     private Object del
 
-    DSLParams(d) {
+    WHParams(d) {
         this.del = d
     }
 
