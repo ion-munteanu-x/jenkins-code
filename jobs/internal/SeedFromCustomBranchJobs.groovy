@@ -8,6 +8,7 @@ pipelineJob(Jobs.SeedCustom) {
     logRotator(7, 500)    
     parameters {
         def Param = DSLParams.get(delegate)            
+        Param.namespace()
         Param.dsl()
     }
     new DSL(this).pipeline(delegate, 'internal/SeedFromCustomBranch', '${Dsl_Version}')
