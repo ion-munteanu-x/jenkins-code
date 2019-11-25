@@ -2,6 +2,8 @@ package com.williamhill.jenkins.common.data
 
 import com.williamhill.jenkins.common.data.RSConstants
 import com.williamhill.jenkins.common.data.RSJobs
+import com.williamhill.jenkins.common.models.RSRepository
+
 
 class RSRepositories {
     private Cnst = new RSConstants()
