@@ -1,6 +1,6 @@
-package com.raresociopath.jenkins.common.dsl
+package com.raresociopath.jenkins.rs.dsl
 
-import com.raresociopath.jenkins.common.data.RSRepositories
+import com.raresociopath.jenkins.rs.data.RSRepositories
 import javaposse.jobdsl.dsl.DslScriptException
 
 class DSLParam {

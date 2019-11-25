@@ -1,4 +1,4 @@
-package com.raresociopath.jenkins.common.data
+package com.raresociopath.jenkins.rs.data
 
 class RSJobs {
 

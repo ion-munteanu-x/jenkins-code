@@ -1,4 +1,4 @@
-package com.raresociopath.jenkins.common.data
+package com.raresociopath.jenkins.rs.data
 
 class RSConstants {
 
@@ -7,5 +7,5 @@ class RSConstants {
 
     public String DefaultBranch = "master"
 
-    public String GITHUB_SCM_GROUP = "raresociopath"
+    public String SCM_GROUP = "raresociopath"
 }

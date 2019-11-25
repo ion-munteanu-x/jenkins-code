@@ -1,7 +1,7 @@
-package com.raresociopath.jenkins.common.dsl
+package com.raresociopath.jenkins.rs.dsl
 
-import com.raresociopath.jenkins.common.models.RSRepository
-import com.raresociopath.jenkins.common.util.Cloning
+import com.raresociopath.jenkins.rs.models.RSRepository
+import com.raresociopath.jenkins.rs.util.Cloning
 
 
 class DSLParams {

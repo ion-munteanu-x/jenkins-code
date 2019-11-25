@@ -1,7 +1,7 @@
-package com.raresociopath.jenkins.common.dsl
+package com.raresociopath.jenkins.rs.dsl
 
-import com.raresociopath.jenkins.common.util.Cloning
-import com.raresociopath.jenkins.common.data.RSRepositories
+import com.raresociopath.jenkins.rs.util.Cloning
+import com.raresociopath.jenkins.rs.data.RSRepositories
 
 
 class DSLScm {

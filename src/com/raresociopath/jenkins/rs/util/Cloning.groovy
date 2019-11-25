@@ -1,6 +1,6 @@
-package com.raresociopath.jenkins.common.util
+package com.raresociopath.jenkins.rs.util
 
-import com.raresociopath.jenkins.common.models.RSRepository
+import com.raresociopath.jenkins.rs.models.RSRepository
 
 class Cloning {
 

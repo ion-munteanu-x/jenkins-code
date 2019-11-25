@@ -1,4 +1,4 @@
-package com.raresociopath.jenkins.common.dsl
+package com.raresociopath.jenkins.rs.dsl
 
 class DSL {
 

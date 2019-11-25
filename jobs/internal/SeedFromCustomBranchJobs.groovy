@@ -1,15 +1,15 @@
-import com.raresociopath.jenkins.common.dsl.DSL
-import com.raresociopath.jenkins.common.dsl.DSLParams
+import com.raresociopath.jenkins.rs.dsl.DSL
+import com.raresociopath.jenkins.rs.dsl.DSLParams
  
-import static com.raresociopath.jenkins.common.data.RS.Jobs
+import static com.raresociopath.jenkins.rs.data.RS.Jobs
  
 pipelineJob(Jobs.SeedCustom) {
     displayName("Seed from a custom branch")
     logRotator(7, 500)    
     parameters {
-        def Param = DSLParams.get(delegate)            
-        Param.namespace()
-        Param.dsl()
+        def Params = DSLParams.get(delegate)            
+        Params.namespace()
+        Params.dsl()
     }
     new DSL(this).pipeline(delegate, 'internal/SeedFromCustomBranch', '${Dsl_Version}')
 }

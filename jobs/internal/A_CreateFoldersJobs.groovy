@@ -1,4 +1,4 @@
-import static com.raresociopath.jenkins.common.data.RS.Jobs
+import static com.raresociopath.jenkins.rs.data.RS.Jobs
 
 folder(Jobs.InternalJobsFolder) {
     displayName('Internal')

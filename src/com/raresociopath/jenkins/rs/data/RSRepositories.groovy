@@ -1,6 +1,6 @@
-package com.raresociopath.jenkins.common.data
+package com.raresociopath.jenkins.rs.data
 
-import com.raresociopath.jenkins.common.models.RSRepository
+import com.raresociopath.jenkins.rs.models.RSRepository
 
 class RSRepositories {
     private Cnst = new RSConstants()
