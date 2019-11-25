@@ -1,6 +1,6 @@
-package com.raresociopath.jenkins.rs.models
+package com.raresociopath.jenkins.models
 
-import com.raresociopath.jenkins.rs.util.Cloning
+import com.raresociopath.jenkins.util.Cloning
 
 class Repository {
     String humanName

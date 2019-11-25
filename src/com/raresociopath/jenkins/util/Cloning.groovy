@@ -1,4 +1,4 @@
-package com.raresociopath.jenkins.rs.util
+package com.raresociopath.jenkins.util
 
 import com.raresociopath.jenkins.models.Repository
 
