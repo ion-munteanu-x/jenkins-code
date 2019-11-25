@@ -8,9 +8,15 @@ import com.raresociopath.jenkins.rs.dsl.DSLParams
 
 class WHParams extends DSLParams {
 
-    WHParams(d) {
+    static WHParams get(delegate) {
+        new WHParams(delegate)
+    }
+
+    private Object del
+
+    DSLParams(d) {
         this.del = d
-    }    
+    }
 
     // just DRY
 
