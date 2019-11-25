@@ -1,4 +1,4 @@
-import static com.raresociopath.jenkins.data.Constants
+import static com.raresociopath.jenkins.data.Static.*
 
 folder(Constants.InternalJobsFolder) {
     displayName('Internal')

@@ -1,7 +1,8 @@
 import com.raresociopath.jenkins.dsl.DSL
 import com.raresociopath.jenkins.dsl.DSLParams
  
-import static com.raresociopath.jenkins.data.Constants
+import static com.raresociopath.jenkins.data.Static.*
+
 pipelineJob(Constants.SeedCustom) {
     displayName("Seed from a custom branch")
     logRotator(7, 500)    
