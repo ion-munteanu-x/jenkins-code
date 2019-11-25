@@ -1,6 +1,6 @@
 package com.raresociopath.jenkins.common.dsl
 
-import com.raresociopath.jenkins.common.models.RSRSRepository
+import com.raresociopath.jenkins.common.models.RSRepository
 import com.raresociopath.jenkins.common.util.Cloning
 
 
