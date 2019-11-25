@@ -17,15 +17,15 @@ class DSLParams {
     }
 
     void call(name) {
-        ParamDSL.paramT(name, del)
+        DSLParam.paramT(name, del)
     }
 
     void call(name, value) {
-        ParamDSL.paramT(name, value, del)
+        DSLParam.paramT(name, value, del)
     }
 
     void call(name, value, description) {
-        ParamDSL.paramT(name, value, description, del)
+        DSLParam.paramT(name, value, description, del)
     }
 
     void url(name, RSRepository repo, Cloning cloner) {
@@ -38,7 +38,7 @@ class DSLParams {
     }
 
     void dsl(version = null) {
-        ParamDSL.dslParam(version, del)
+        DSLParam.dslParam(version, del)
     }
 
     void shortRepoRef(RSRepository repo, versionOrCanBeEmpty = null, Boolean canBeEmpty = null) {
