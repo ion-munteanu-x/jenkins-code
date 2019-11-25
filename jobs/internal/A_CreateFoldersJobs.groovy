@@ -1,6 +1,6 @@
-import static com.raresociopath.jenkins.common.data.RSJobs
+import static com.raresociopath.jenkins.common.data.RSStaticConstants.Jobs
 
-folder(RSJobs.InternalJobsFolder) {
+folder(Jobs.InternalJobsFolder) {
     displayName('Internal')
     description('This folder contains internal jobs, used either by another jobs or by administrator.')
 }
