@@ -1,5 +1,7 @@
 package com.raresociopath.jenkins.common.models
 
+import com.raresociopath.jenkins.common.util.Cloning
+
 class RSRepository {
     String humanName
     String safeHumanName
