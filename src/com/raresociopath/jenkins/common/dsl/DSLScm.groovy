@@ -1,14 +1,18 @@
 package com.raresociopath.jenkins.common.dsl
 
-import static com.williamhill.jenkins.models.StaticProductRepositories.JenkinsJobs
+import com.raresociopath.jenkins.common.util.Cloning
 
-class JobDslScm {
+import static com.raresociopath.jenkins.common.data.RSRepositories.JenkinsJobs
+
+
+class DSLScm {
 
     private Map<String, String> envvars
     private PrintStream logger
     private Cloning cloner
+    private Repos repos = new RSRepositories();
 
-    JobDslScm(container) {
+    DSLScm(container) {
         this.envvars = container.binding.variables
         this.logger = envvars.get('out') as PrintStream
         this.cloner = new Cloning(container)
@@ -17,9 +21,9 @@ class JobDslScm {
     void declareHere(delegate, version = null) {
         delegate.scm {
             git {
-                branch(version ?: JenkinsJobs.defaultBranch)
+                branch(version ?: repos.JenkinsJobs.defaultBranch)
                 remote {
-                    url JenkinsJobs.cloneUrl(cloner)
+                    url repos.JenkinsJobs.cloneUrl(cloner)
                     credentials envvars.get('SCM_CREDENTIALS_ID')
                 }
                 extensions {

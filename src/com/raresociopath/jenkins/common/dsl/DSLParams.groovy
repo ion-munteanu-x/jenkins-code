@@ -1,6 +1,8 @@
-package com.raresociopath.jenkins.jobs.dsl
+package com.raresociopath.jenkins.common.dsl
 
-import com.raresociopath.jenkins.models.Repository
+import com.raresociopath.jenkins.common.models.Repository
+import com.raresociopath.jenkins.common.util.Cloning
+
 
 class ParamsDsl {
 
