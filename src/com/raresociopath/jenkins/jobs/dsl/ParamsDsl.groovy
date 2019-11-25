@@ -1,7 +1,7 @@
-package com.williamhill.jenkins.jobs.dsl
+package com.raresociopath.jenkins.jobs.dsl
 
-import com.williamhill.jenkins.jobs.DockerImages
-import com.williamhill.jenkins.models.ProductRepository
+import com.raresociopath.jenkins.jobs.DockerImages
+import com.raresociopath.jenkins.models.ProductRepository
 
 class ParamsDsl {
 
