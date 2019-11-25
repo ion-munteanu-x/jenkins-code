@@ -50,6 +50,10 @@ class RSRepository {
         else "https://$server/${namespace}/${name}.git".toString()
     }
 
+    String cloneUrl(Cloning cloner) {
+        cloner.cloneUrl(this)
+    }
+
     def getBuiltVersionFrom(Map data) {
         getFrom(data).builtVersion
     }
