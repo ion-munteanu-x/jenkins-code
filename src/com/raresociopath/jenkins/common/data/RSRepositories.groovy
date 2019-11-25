@@ -1,6 +1,6 @@
 package com.raresociopath.jenkins.common.data
 
-import com.rarespciopath.jenkins.common.models.RSRepository
+import com.raresociopath.jenkins.common.models.RSRepository
 
 
 class RSRepositories {
