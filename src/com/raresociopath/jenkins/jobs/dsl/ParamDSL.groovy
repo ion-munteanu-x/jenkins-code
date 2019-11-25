@@ -1,8 +1,8 @@
 package com.raresociopath.jenkins.jobs.dsl
 
+import com.raresociopath.jenkins.jobs.dsl.kubeconfig.KubeconfigSupport
+import com.raresociopath.jenkins.models.ProductRepos
 import javaposse.jobdsl.dsl.DslScriptException
-
-import static com.raresociopath.jenkins.models.StaticProductRepositories.JenkinsJobs
 
 class ParamDSL {
     private static def paramImpl(String name, value, String desc, delegate, paramDefinitionContext) {
@@ -52,7 +52,6 @@ class ParamDSL {
     }
 
     static def dslParam(value, delegate) {
-        paramImpl('Dsl_Version', value ?: JenkinsJobs.defaultBranch, 'Jobs DSL version', delegate, null)
+        paramImpl('Dsl_Version', value ?: new ProductRepos().JenkinsJobs.defaultBranch, 'Jobs DSL version', delegate, null)
     }
-
 }

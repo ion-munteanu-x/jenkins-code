@@ -9,6 +9,7 @@ class ProductRepository {
     private def Constants = new ConstantsData()
     String humanName
     String group
+    String id
     String name
     String defaultBranch = 'develop'
     boolean deployable = true
@@ -41,6 +42,17 @@ class ProductRepository {
         if (defaultBranch) {
             this.defaultBranch = defaultBranch
         }
+    }
+
+    ProductRepository(Map<String, Object> data) {
+        this.id = data.id
+        this.humanName = data.humanName
+        this.name = data.repoName ?: data.id
+        this.deployable = data.deployable ?: true
+        this.requiresAvro = data.requiresAvro ?: false
+        this.defaultBranch = data.defaultBranch ?: 'develop'
+        this.language = data.language
+        this.group = data.namespace
     }
 
     String sshCloneUrl(String server) {
@@ -104,6 +116,12 @@ class ProductRepository {
         this
     }
 
+    ProductRepository asIstioMixerAdapter() {
+        language = "istio-adapter"
+        distributeJobName = Jobs.BuildDockerIstioMixerAdapter
+        this
+    }
+
     ProductRepository withDistJob(String jobId) {
         distributeJobName = jobId
         this
@@ -133,5 +151,4 @@ class ProductRepository {
     boolean isRawDocker() {
         language == "raw-docker"
     }
-
 }
