@@ -1,12 +1,18 @@
 package com.raresociopath.jenkins.rs.models
 
 import com.raresociopath.jenkins.rs.util.Cloning
-import com.raresociopath.jenkins.rs.models.RSRepository
 
+class Repository {
+    String humanName
+    String safeHumanName
+    String shortRepoParam
+    String namespace
+    String id
+    String name
+    String defaultBranch
+    String language
 
-class WHRepository extends RSRepository {
-
-    WHRepository(Map<String, Object> data) {
+    Repository(Map<String, Object> data) {
         this.id = data.id
         this.humanName = data.humanName ?: data.id.capitalize()
         this.name = data.repoName ?: data.id

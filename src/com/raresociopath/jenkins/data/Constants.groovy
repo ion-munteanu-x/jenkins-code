@@ -1,6 +1,6 @@
-package com.raresociopath.jenkins.rs.data
+package com.raresociopath.jenkins.data
 
-class RSConstants {
+class Constants {
 
     public String RepoEnvNamePrefix = "REPO_TAG____"
     public String RepoEnvNameSuffix = "_Version"
@@ -8,4 +8,7 @@ class RSConstants {
     public String DefaultBranch = "master"
 
     public String SCM_GROUP = "raresociopath"
+
+    public String InternalJobsFolder = "internal"
+    public String SeedCustom = "$InternalJobsFolder/seed-custom"
 }

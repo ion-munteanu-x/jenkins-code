@@ -1,6 +1,6 @@
-package com.raresociopath.jenkins.rs.dsl
+package com.raresociopath.jenkins.dsl
 
-import com.raresociopath.jenkins.rs.data.RSRepositories
+import com.raresociopath.jenkins.data.Repositories
 import javaposse.jobdsl.dsl.DslScriptException
 
 class DSLParam {
@@ -51,6 +51,6 @@ class DSLParam {
     }
 
     static def dslParam(value, delegate) {
-        paramImpl('Dsl_Version', value ?: new RSRepositories().JenkinsJobs.defaultBranch, 'Jobs DSL version', delegate, null)
+        paramImpl('Dsl_Version', value ?: new Repositories().JenkinsJobs.defaultBranch, 'Jobs DSL version', delegate, null)
     }
 }
