@@ -2,6 +2,8 @@ package com.raresociopath.jenkins.wh.dsl
 
 import com.raresociopath.jenkins.rs.models.RSRepository
 import com.raresociopath.jenkins.rs.util.Cloning
+import com.raresociopath.jenkins.rs.dsl.DSLParams
+
 
 
 class WHParams extends DSLParams {
