@@ -4,15 +4,15 @@ import com.raresociopath.jenkins.common.models.RSRepository
 import com.raresociopath.jenkins.common.util.Cloning
 
 
-class ParamsDsl {
+class DSLParams {
 
-    static ParamsDsl get(delegate) {
-        new ParamsDsl(delegate)
+    static DSLParams get(delegate) {
+        new DSLParams(delegate)
     }
 
     private Object del
 
-    ParamsDsl(d) {
+    DSLParams(d) {
         this.del = d
     }
 
