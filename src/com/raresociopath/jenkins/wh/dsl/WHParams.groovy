@@ -8,6 +8,10 @@ import com.raresociopath.jenkins.rs.dsl.DSLParams
 
 class WHParams extends DSLParams {
 
+    WHParams(d) {
+        this.del = d
+    }    
+
     // just DRY
 
     def suggestedNamespace(defaultOne = '') {
