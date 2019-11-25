@@ -1,6 +1,5 @@
 package com.raresociopath.jenkins.jobs.dsl
 
-import com.raresociopath.jenkins.jobs.dsl.kubeconfig.KubeconfigSupport
 import com.raresociopath.jenkins.models.ProductRepos
 import javaposse.jobdsl.dsl.DslScriptException
 
