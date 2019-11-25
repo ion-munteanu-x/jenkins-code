@@ -10,7 +10,7 @@ class DSLScm {
     private Map<String, String> envvars
     private PrintStream logger
     private Cloning cloner
-    private Repos repos = new RSRepositories();
+    private RSRepositories repos = new RSRepositories();
 
     DSLScm(container) {
         this.envvars = container.binding.variables
