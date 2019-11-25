@@ -1,6 +1,5 @@
 package com.raresociopath.jenkins.jobs.dsl
 
-import com.raresociopath.jenkins.jobs.DockerImages
 import com.raresociopath.jenkins.models.ProductRepository
 
 class ParamsDsl {
