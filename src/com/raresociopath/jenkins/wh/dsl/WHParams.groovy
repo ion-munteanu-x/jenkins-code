@@ -8,10 +8,6 @@ import com.raresociopath.jenkins.rs.dsl.DSLParams
 
 class WHParams extends DSLParams {
 
-    static WHParams get(delegate) {
-        super(delegate)
-    }
-
     private Object del
 
     WHParams(d) {
