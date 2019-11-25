@@ -1,4 +1,4 @@
-package com.raresociopath.jenkins.common.dsl
+package com.raresociopath.jenkins.common.util
 
 import com.raresociopath.jenkins.common.models.RSRepository
 
