@@ -1,4 +1,4 @@
-package com.raresociopath.jenkins.jobs
+package com.raresociopath.jenkins.common.data
 
 class StaticConstants {
     public static JobsData Jobs = new JobsData()

@@ -1,4 +1,4 @@
-package com.raresociopath.jenkins.jobs.dsl
+package com.raresociopath.jenkins.common.dsl
 
 class DSL {
 

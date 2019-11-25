@@ -1,6 +1,6 @@
-package com.raresociopath.jenkins.jobs.dsl
+package com.raresociopath.jenkins.common.dsl
 
-import com.raresociopath.jenkins.models.ProductRepository
+import com.raresociopath.jenkins.common.models.Repository
 
 class Cloning {
 
@@ -14,7 +14,7 @@ class Cloning {
         this.logger = envvars.get('out') as PrintStream
     }
 
-    String cloneUrl(ProductRepository repo) {
+    String cloneUrl(Repository repo) {
         String cloneMethod = envvars.get('SCM_CLONE_METHOD').toLowerCase()
         if (!(cloneMethod == 'ssh' || cloneMethod == 'https')) {
             logger.println("ERROR: clone method not set as SCM_CLONE_METHOD variable, fallback to $defaultCloneMethod")

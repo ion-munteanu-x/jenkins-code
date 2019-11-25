@@ -1,6 +1,6 @@
 package com.raresociopath.jenkins.jobs.dsl
 
-import com.raresociopath.jenkins.models.ProductRepository
+import com.raresociopath.jenkins.models.Repository
 
 class ParamsDsl {
 
@@ -26,11 +26,11 @@ class ParamsDsl {
         ParamDSL.paramT(name, value, description, del)
     }
 
-    void url(name, ProductRepository repo, Cloning cloner) {
+    void url(name, Repository repo, Cloning cloner) {
         call(name, cloner.cloneUrl(repo), "A link to clone the ${repo.humanName}.")
     }
 
-    void ref(name, ProductRepository repo, version = null, Boolean canBeEmpty = null) {
+    void ref(name, Repository repo, version = null, Boolean canBeEmpty = null) {
         def appendix = canBeEmpty ? (repo.isDeployable() ? ' Empty means ~don\'t-deploy~.' : ' Empty means ~don\'t use~.') : ''
         call(name, version != null ? version : repo.defaultBranch, "Version of the ${repo.humanName}.${appendix} Can be one one of tag, branch, full commit sha or shorter prefix of it.")
     }
@@ -39,7 +39,7 @@ class ParamsDsl {
         ParamDSL.dslParam(version, del)
     }
 
-    void shortRepoRef(ProductRepository repo, versionOrCanBeEmpty = null, Boolean canBeEmpty = null) {
+    void shortRepoRef(Repository repo, versionOrCanBeEmpty = null, Boolean canBeEmpty = null) {
         if (versionOrCanBeEmpty instanceof Boolean && canBeEmpty == null) {
             ref(repo.shortRepoParam, repo, null, versionOrCanBeEmpty)
         } else {
