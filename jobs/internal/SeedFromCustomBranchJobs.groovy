@@ -1,7 +1,7 @@
 import com.raresociopath.jenkins.common.dsl.DSL
 import com.raresociopath.jenkins.common.dsl.DSLParams
  
-import static com.raresociopath.jenkins.common.data.RSStaticConstants.Jobs
+import static com.raresociopath.jenkins.common.data.RS.Jobs
  
 pipelineJob(Jobs.SeedCustom) {
     displayName("Seed from a custom branch")
