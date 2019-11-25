@@ -1,9 +1,9 @@
 import com.raresociopath.jenkins.common.dsl.DSL
 import com.raresociopath.jenkins.common.dsl.DSLParams
  
-import static com.raresociopath.jenkins.common.data.StaticConstants.Jobs
+import static com.raresociopath.jenkins.common.data.RSJobs
  
-pipelineJob(Jobs.SeedCustom) {
+pipelineJob(RSJobs.SeedCustom) {
     displayName("Seed from a custom branch")
     logRotator(7, 500)    
     parameters {
