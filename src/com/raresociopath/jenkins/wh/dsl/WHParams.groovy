@@ -25,7 +25,7 @@ class WHParams extends DSLParams {
     }
 
     def namespace(defaultOne = '') {
-        call('Namespace', defaultOne, 'Specify which namespace should be used for this deployment.')
+        super.call('Namespace', defaultOne, 'Specify which namespace should be used for this deployment.')
     }
 
     def subnet(defaultOne = '') {
