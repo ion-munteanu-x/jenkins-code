@@ -116,12 +116,6 @@ class ProductRepository {
         this
     }
 
-    ProductRepository asIstioMixerAdapter() {
-        language = "istio-adapter"
-        distributeJobName = Jobs.BuildDockerIstioMixerAdapter
-        this
-    }
-
     ProductRepository withDistJob(String jobId) {
         distributeJobName = jobId
         this

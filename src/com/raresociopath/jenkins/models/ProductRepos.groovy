@@ -13,7 +13,8 @@ class ProductRepos {
     public def JenkinsJobs = new ProductRepository(defaults + [
             id       : 'jenkins-jobs',
             humanName: 'JenkinsJobs',
-            namespace: 'code-factory-group'
+            namespace: 'code-factory-group',
+            defaultBranch: 'master'
     ])
     
     ProductRepository getByParam(param) {
