@@ -1,15 +1,15 @@
-package com.raresociopath.jenkins.jobs.dsl
+package com.raresociopath.jenkins.dsl
 
 class DSL {
 
     private Map<String, String> envvars
     private PrintStream logger
-    private JobDslScm dslUtil
+    private DSLScm dslUtil
 
     DSL(container) {
         this.envvars = container.binding.variables
         this.logger = envvars.get('out') as PrintStream
-        this.dslUtil = new JobDslScm(container)
+        this.dslUtil = new DSLScm(container)
     }
 
 

@@ -1,10 +1,9 @@
-package com.raresociopath.jenkins.jobs.dsl
+package com.raresociopath.jenkins.dsl
 
+import com.raresociopath.jenkins.data.Repositories
 import javaposse.jobdsl.dsl.DslScriptException
 
-import static com.raresociopath.jenkins.models.StaticProductRepositories.JenkinsJobs
-
-class ParamDSL {
+class DSLParam {
     private static def paramImpl(String name, value, String desc, delegate, paramDefinitionContext) {
         // below line will work only if delegate is called in a extra { code block }, it will fail if called directly in "parameters { param(...) }" <- this is weird
         def logger = null
@@ -52,7 +51,6 @@ class ParamDSL {
     }
 
     static def dslParam(value, delegate) {
-        paramImpl('Dsl_Version', value ?: JenkinsJobs.defaultBranch, 'Jobs DSL version', delegate, null)
+        paramImpl('Dsl_Version', value ?: new Repositories().JenkinsJobs.defaultBranch, 'Jobs DSL version', delegate, null)
     }
-
 }
