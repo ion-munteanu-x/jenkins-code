@@ -3,7 +3,7 @@ package com.raresociopath.jenkins.jobs.dsl
 import com.raresociopath.jenkins.common.data.RSRepositories
 import javaposse.jobdsl.dsl.DslScriptException
 
-class ParamDSL {
+class DSLParam {
     private static def paramImpl(String name, value, String desc, delegate, paramDefinitionContext) {
         // below line will work only if delegate is called in a extra { code block }, it will fail if called directly in "parameters { param(...) }" <- this is weird
         def logger = null
