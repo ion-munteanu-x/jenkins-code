@@ -18,7 +18,6 @@ class RSRepository {
         this.language = data.language
         this.namespace = data.namespace
         this.safeHumanName = humanName.replaceAll('[ -]', "_")
-        this.library = data.library?.toBoolean() ?: false
         this.shortRepoParam = "${this.safeHumanName}_Version"
     }
 
