@@ -1,4 +1,4 @@
-package com.raresociopath.jenkins.jobs.dsl
+package com.raresociopath.jenkins.common.dsl
 
 import com.raresociopath.jenkins.common.data.RSRepositories
 import javaposse.jobdsl.dsl.DslScriptException
