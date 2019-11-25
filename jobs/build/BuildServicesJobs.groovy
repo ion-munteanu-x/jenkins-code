@@ -7,7 +7,7 @@ pipelineJob(Jobs.HelloWorld) {
     displayName("Build Hello World")
     parameters {
         def Params = WHParams.get(delegate) 
-        Params("String", "", "String")           
+        Params.namespace()       
         Params.dsl()
     }
     new DSL(this).pipeline(delegate, 'build/BuildHelloWorld', '${Dsl_Version}')
