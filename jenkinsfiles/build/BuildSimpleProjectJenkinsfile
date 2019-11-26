@@ -94,16 +94,18 @@ void doWork(cfg) {
                         customImage = docker.build(tagDockerWithCommit)
                     }
                 }
-
+            }
+            
+            docker.withRegistry(dockerProps.dockerRepoUrl, dockerProps.repoCredentialsId) {
                 stage('Publish to Registry') {
                     tryCatchSetResultFailure('Pushing of newly crated images failed.') {
                         customImage.push()
                         customImage.push(cfg.dockerBranchName)
                         dockerImagesWhichShouldBeDeletedAtTheEnd.add(tagDockerWithBranch)
-                        bitbucketSetCommitStatus(cfg.repo.owner, cfg.repo.name, cfg.repo.commitSha, 'SUCCESSFUL', 'JenkinsKRK-DockerImage', env.BUILD_URL)
                     }
                 }
             }
+            
         } else {
             info("All images already built, skipping")
         }
