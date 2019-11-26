@@ -3,7 +3,7 @@ package com.raresociopath.jenkins.data
 class Constants {
 
     public String DockerRegistry = "docker.io/raresociopath"
-    public String DockerRegistryJenkinsCredentialsId = ""
+    public String DockerRegistryJenkinsCredentialsId = "rs-docker-hub"
 
     public String RepoEnvNamePrefix = "REPO_TAG____"
     public String RepoEnvNameSuffix = "_Version"
