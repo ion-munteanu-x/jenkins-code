@@ -17,7 +17,7 @@ class Repository {
         this.id = data.id
         this.humanName = data.humanName ?: data.id.capitalize()
         this.name = data.repoName ?: data.id
-        this.defaultBranch = data.defaultBranch ?: 'develop'
+        this.defaultBranch = data.defaultBranch ?: 'master'
         this.language = data.language
         this.namespace = data.namespace
         this.safeHumanName = humanName.replaceAll('[ -]', "_")
