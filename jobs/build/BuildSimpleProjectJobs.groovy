@@ -9,11 +9,11 @@ import static com.raresociopath.jenkins.data.StaticData.Jobs
 Cloning cloner = new Cloning(this)
 def Repos = new Repositories()
 
-def choices = Repos.AllProjects.findAll { it.isRawProject() }.collect { cloner.cloneUrl(it) }
+def choices = Repos.AllProjects.findAll { it.isSimpleProject() }.collect { cloner.cloneUrl(it) }
 choices.add(0, "")
 
-pipelineJob(Jobs.BuildRawProject) {
-    displayName("Build raw project generic")
+pipelineJob(Jobs.BuildSimpleProject) {
+    displayName("Build simple project generic")
     description("This project assumes that repository contains Dockerfile file in project's root<br/>" +
             "You can provide REPO_URL parameter, but it would be simpler to use one of predefined urls<br/>" +
             "for use one of predefined, simply select one of possible url in PREDEFINED_LOW_PRECEDENCE_REPO_URL<br/>" +
@@ -31,10 +31,10 @@ pipelineJob(Jobs.BuildRawProject) {
     environmentVariables {
         GlobalVars.putHere(delegate)
     }
-    new DSL(this).pipeline(delegate, 'build/BuildRawProject', '${Dsl_Version}')
+    new DSL(this).pipeline(delegate, 'build/BuildSimpleProject', '${Dsl_Version}')
 }
 
-Repos.AllProjects.findAll { it.isRawProject() }.each { proj ->
+Repos.AllProjects.findAll { it.isSimpleProject() }.each { proj ->
     pipelineJob(proj.distJobId) {
         displayName("Build docker image of ${proj.humanName}")
         description("This project assumes that repository contains Dockerfile file in project's root<br/>" +
@@ -53,6 +53,6 @@ Repos.AllProjects.findAll { it.isRawProject() }.each { proj ->
             GlobalVars.putHere(delegate)
             env('Repo_Url', cloner.cloneUrl(proj))
         }
-        new DSL(this).pipeline(delegate, 'build/BuildRawProject', '${Dsl_Version}')
+        new DSL(this).pipeline(delegate, 'build/BuildSimpleProject', '${Dsl_Version}')
     }
 }

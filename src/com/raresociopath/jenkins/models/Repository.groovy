@@ -33,8 +33,8 @@ class Repository {
         language == "node"
     }
 
-    boolean isRawProject() {
-        language == "raw"
+    boolean isSimpleProject() {
+        language == "simple"
     }
 
     String cloneUrl(ssh, server) {

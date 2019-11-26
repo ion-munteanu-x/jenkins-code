@@ -10,7 +10,7 @@ folder(Jobs.BuildJobsFolder) {
     description('This folder contains build jobs.')
 }
 
-folder(Jobs.BuildRawJobsFolder) {
-    displayName('Build Raw Projects')
+folder(Jobs.BuildSimpleProjectsFolder) {
+    displayName('Build Simple Projects')
     description('This folder contains build jobs for projects that have Dockerfile at the root of the repository.')
 }
