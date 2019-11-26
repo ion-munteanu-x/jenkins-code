@@ -1,4 +1,4 @@
-//@Library("rs-pipelines@feature/2") _
+@Library("rs-pipelines@feature/2") _
 
 import com.raresociopath.jenkins.exceptions.RSFailure
 import hudson.AbortException
