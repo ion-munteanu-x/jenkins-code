@@ -120,7 +120,7 @@ void doWork(cfg) {
                         }
                     }
                 }
-                storeReturnData(["taggedImages": taggedImages])
+                storeData(["taggedImages": taggedImages])
             }
         }
         stage("Drop images from local cache") {
@@ -129,5 +129,5 @@ void doWork(cfg) {
             sh removing
         }
     }
-    storeReturnData(['builtVersion': cfg.app.commitRef])    
+    storeData(['builtVersion': cfg.app.commitRef])    
 }
