@@ -2,14 +2,14 @@ package com.williamhill.jenkins.data
 
 class GlobalVars {
 
-    private Constants = new Constants()
+    private Const = new Constants()
 
     static void putDockerRegistry(delegate) {
-        delegate.env("DOCKER_REGISTRY_NAME", "$Constants.DockerRegistry")
+        delegate.env("DOCKER_REGISTRY_NAME", "$Const.DockerRegistry")
     }
 
     static void putDockerCredentialsId(delegate) {
-        delegate.env('DOCKER_REGISTRY_JENKINS_CREDENTIALS_ID', "$Constants.DockerRegistryJenkinsCredentialsId")
+        delegate.env('DOCKER_REGISTRY_JENKINS_CREDENTIALS_ID', "$Const.DockerRegistryJenkinsCredentialsId")
     }
 
     static void putHere(delegate) {
