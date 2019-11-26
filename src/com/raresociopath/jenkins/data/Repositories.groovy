@@ -15,7 +15,7 @@ class Repositories {
     public def HelloWorldProject = new Repository(rawDocker + [
             id       : 'rs-hello-world',
             humanName: 'HelloWorld',
-            distJobId: "$Jobs.BuildRawProject/build-hello-world"
+            distJobId: "$Jobs.BuildRawJobsFolder/build-hello-world"
     ])    
 
     public List<Repositories> AllProjects = [

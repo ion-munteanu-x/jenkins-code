@@ -9,3 +9,8 @@ folder(Jobs.BuildJobsFolder) {
     displayName('Build')
     description('This folder contains build jobs.')
 }
+
+folder(Jobs.BuildRawJobsFolder) {
+    displayName('Build Raw Projects')
+    description('This folder contains build jobs.')
+}
