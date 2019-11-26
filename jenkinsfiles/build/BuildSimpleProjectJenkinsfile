@@ -99,7 +99,7 @@ void doWork(cfg) {
                     tryCatchSetResultFailure('Pushing of newly crated images failed.') {
                         customImage.push()
                         //customImage.push(cfg.dockerBranchName)
-                        dockerImagesWhichShouldBeDeletedAtTheEnd.add(tagDockerWithBranch)                       
+                        //dockerImagesWhichShouldBeDeletedAtTheEnd.add(tagDockerWithBranch)                       
                     }
                 }
             }
