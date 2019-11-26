@@ -2,7 +2,7 @@ package com.williamhill.jenkins.data
 
 class GlobalVars {
 
-    def Constants = new Constants()
+    private Constants = new Constants()
 
     static void putDockerRegistry(delegate) {
         delegate.env("DOCKER_REGISTRY_NAME", "$Constants.DockerRegistry")
