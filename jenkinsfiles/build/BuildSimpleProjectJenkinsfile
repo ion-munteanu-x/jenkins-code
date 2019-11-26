@@ -96,9 +96,11 @@ void doWork(cfg) {
                 }
 
                 stage('Publish to Registry') {
-                    customImage.push()
-                    customImage.push(cfg.dockerBranchName)
-                    dockerImagesWhichShouldBeDeletedAtTheEnd.add(tagDockerWithBranch)
+                    tryCatchSetResultFailure('Pushing of newly crated images failed.') {
+                        customImage.push()
+                        customImage.push(cfg.dockerBranchName)
+                        dockerImagesWhichShouldBeDeletedAtTheEnd.add(tagDockerWithBranch)                       
+                    }
                 }
             }
         } else {
