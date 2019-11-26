@@ -48,4 +48,8 @@ class DSLParams {
             ref(repo.shortRepoParam, repo, versionOrCanBeEmpty, canBeEmpty)
         }
     }
+
+    def forceRebuild(defaultOne = false) {
+        call('Force_Rebuild', defaultOne, 'Whether to force rebuild.')
+    }    
 }
