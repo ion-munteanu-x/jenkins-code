@@ -1,4 +1,4 @@
-package com.williamhill.jenkins.data
+package com.raresociopath.jenkins.data
 
 class GlobalVars {
 
