@@ -11,6 +11,7 @@ class Repository {
     String name
     String defaultBranch
     String language
+    String distJobId
 
     Repository(Map<String, Object> data) {
         this.id = data.id
@@ -21,6 +22,7 @@ class Repository {
         this.namespace = data.namespace
         this.safeHumanName = humanName.replaceAll('[ -]', "_")
         this.shortRepoParam = "${this.safeHumanName}_Version"
+        this.distJobId = data.distJobId
     }
 
     boolean isJava() {
