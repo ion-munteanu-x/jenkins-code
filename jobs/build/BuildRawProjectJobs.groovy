@@ -1,13 +1,13 @@
-import com.raresociopath.jenkins.util.Cloning
 import com.raresociopath.jenkins.dsl.DSL
+import com.raresociopath.jenkins.dsl.DSLParams
 import com.raresociopath.jenkins.data.GlobalVars
-import com.raresociopath.jenkins.dsl.ParamsDsl
-import com.raresociopath.jenkins.data.Repostitories
+import com.raresociopath.jenkins.data.Repositories
+import com.raresociopath.jenkins.util.Cloning
 
 import static com.raresociopath.jenkins.data.StaticData.Jobs
 
 Cloning cloner = new Cloning(this)
-def Repos = new Repostitories()
+def Repos = new Repositories()
 
 def choices = Repos.AllProjects.findAll { it.isRawProject() }.collect { cloner.cloneUrl(it) }
 choices.add(0, "")
