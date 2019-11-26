@@ -3,10 +3,11 @@ Jenkins Jobs.
 
 
 ## Jenkins plugins:
-Job DSL
-AnsiColor
-EnvInject API Plugin
-Environment Injector Plugin
-user build vars plugin
-Pipeline Utility Steps
-Docker
+<ul>
+<li>Job DSL</li>
+<li>AnsiColor</li>
+<li>EnvInject API Plugin</li>
+<li>Environment Injector Plugin</li>
+<li>user build vars plugin</li>
+<li>Pipeline Utility Steps</li>
+</ul>

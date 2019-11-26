@@ -14,7 +14,7 @@ class Repositories {
     ])
     public def HelloWorldProject = new Repository(simpleProject + [
             id       : 'rs-hello-world',
-            humanName: 'HelloWorld',
+            humanName: 'Hello World App',
             distJobId: "$Jobs.BuildSimpleProjectsFolder/build-hello-world"
     ])
     public def HelloWorldProject2 = new Repository(simpleProject + [
