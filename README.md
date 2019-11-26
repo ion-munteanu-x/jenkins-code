@@ -9,3 +9,4 @@ EnvInject API Plugin
 Environment Injector Plugin
 user build vars plugin
 Pipeline Utility Steps
+Docker

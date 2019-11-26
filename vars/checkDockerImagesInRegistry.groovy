@@ -13,7 +13,7 @@ def call(dockerProps, images) {
                 info("Image $image exists in repository")
                 [image, true]
             } catch (exc) {
-                info("Image not not exists in repo")
+                info("Image doesn't exist in repo")
                 [image, false]
             }
         }
