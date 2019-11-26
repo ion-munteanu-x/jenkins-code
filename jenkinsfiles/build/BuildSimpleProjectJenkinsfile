@@ -1,0 +1,51 @@
+//@Library("rs-pipelines@feature/2") _
+
+import com.raresociopath.jenkins.exceptions.RSFailure
+import hudson.AbortException
+import org.jenkinsci.plugins.workflow.steps.FlowInterruptedException
+
+rsNode {
+    timeout(30) {
+        Map cfg = [
+                ref       : env.Repo_Ref.trim(),
+                url       : null, // will be set later
+                force     : env.Force_Rebuild == 'true', // remove second after 1st of January 2020
+                product   : env.Override_Docker_Image_Name.trim().empty ? null : env.Override_Docker_Image_Name.trim(),
+                scmCredsId: env.SCM_CREDENTIALS_ID,
+        ]
+        try {
+            doWork(cfg)
+        } catch (e) {
+            if (!(e instanceof RSFailure || e instanceof AbortException || e instanceof FlowInterruptedException)) {
+                err("Got unknown exception ${e.toString()}")
+            }
+            throw e
+        }
+    }
+}
+
+
+void doWork(cfg) {
+    stage('Prepare') {
+        checkParam(DOCKER_REGISTRY_NAME, 'Please set the DOCKER_REGISTRY_NAME build parameter!')
+//        checkParam(DOCKER_REGISTRY_JENKINS_CREDENTIALS_ID, 'Please set the DOCKER_REGISTRY_JENKINS_CREDENTIALS_ID build parameter in order to push image to the repo!')
+//        checkParam(SCM_CREDENTIALS_ID, 'Please set the SCM_CREDENTIALS_ID build parameter in order to clone the repo!')
+
+        tryCatchSetResultFailure('Setup failed.') {
+            if (env.Repo_Url.trim() == '' || env.Repo_Url.trim() == 'url to repository, any of format, https or ssh') {
+                cfg.url = env.Predefined_Low_Precedence_Repo_Url.trim()
+            } else {
+                cfg.url = env.Repo_Url.trim()
+            }
+
+            if (cfg.url.empty) {
+                error("URL of git repository to clone cannot be empty")
+            }
+
+            appendComment("Working with version <b>${cfg.ref}</b>")
+            appendComment("of repository <b>${cfg.url}</b>")      
+
+            gitClone(cfg.url, cfg.ref, cfg.scmCredsId)      
+        }
+    }
+}

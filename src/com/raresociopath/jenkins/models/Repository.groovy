@@ -11,6 +11,7 @@ class Repository {
     String name
     String defaultBranch
     String language
+    String distJobId
 
     Repository(Map<String, Object> data) {
         this.id = data.id
@@ -21,14 +22,7 @@ class Repository {
         this.namespace = data.namespace
         this.safeHumanName = humanName.replaceAll('[ -]', "_")
         this.shortRepoParam = "${this.safeHumanName}_Version"
-    }
-
-    boolean isSbt() {
-        language == "scala" && !library
-    }
-
-    boolean isScala() {
-        language == "scala"
+        this.distJobId = data.distJobId
     }
 
     boolean isJava() {
@@ -39,12 +33,8 @@ class Repository {
         language == "node"
     }
 
-    boolean isRawDocker() {
-        language == "raw-docker"
-    }
-
-    boolean isIstioMixerAdapter() {
-        language == "istio-adapter"
+    boolean isSimpleProject() {
+        language == "simple"
     }
 
     String cloneUrl(ssh, server) {
