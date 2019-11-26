@@ -11,7 +11,4 @@ class Constants {
     public String DefaultBranch = "master"
 
     public String SCM_GROUP = "raresociopath"
-
-    public String InternalJobsFolder = "internal"
-    public String SeedCustom = "$InternalJobsFolder/seed-custom"
 }
