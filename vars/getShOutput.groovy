@@ -11,6 +11,6 @@ String call(String command, boolean liveOutput = false) {
         def result = readFile tmpFile
         return result?.trim()
     } else {
-        return sh(returnStdout: true, script: "#!/bin/bash -e\n$command").trim()
+        return sh(returnStdout: true, script: "#!/bin/sh -e\n$command").trim()
     }
 }
