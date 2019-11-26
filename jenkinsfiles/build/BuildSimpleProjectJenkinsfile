@@ -64,4 +64,70 @@ void doWork(cfg) {
         cfg.buildId = "build-${cfg.project}-${cfg.app.commitRef}"
         echo "Full config ${toPrettyJson(cfg)}"
     }
+    def dockerProps = cfg.docker
+    def shouldBuild = cfg.force
+
+    List<String> officialArtifacts = [renderDockerImageRef(cfg.product, cfg.app.commitRef)]
+    List<String> dockerImagesWhichShouldBeDeletedAtTheEnd = [] + officialArtifacts
+
+    lock(resource: cfg.buildId, quantity: 1, variable: '_') {
+
+        if (!shouldBuild) {
+            stage('Check if all products are built') {
+                catchError {
+                    shouldBuild = !checkDockerImagesInRegistry(dockerProps, officialArtifacts)
+                            .findAll { !it.value }
+                            .isEmpty()
+                }
+            }
+        }
+        if (shouldBuild) {
+            currentBuild.setKeepLog(true)
+            cfg.statusSet = true
+            docker.withRegistry(dockerProps.dockerRepoUrl, dockerProps.repoCredentialsId) {
+                def customImage = null
+                def tagDockerWithCommit = renderDockerImageRef(cfg.product, cfg.app.commitRef)
+                def tagDockerWithBranch = renderDockerImageRef(cfg.product, cfg.dockerBranchName)
+
+                stage('Build docker images') {
+                    tryCatchSetResultFailure('Building image failed.') {
+                        customImage = docker.build(tagDockerWithCommit)
+                    }
+                }
+
+                stage('Publish to Registry') {
+                    tryCatchSetResultFailure('Pushing of newly crated images failed.') {
+                        customImage.push()
+                        customImage.push(cfg.dockerBranchName)
+                        dockerImagesWhichShouldBeDeletedAtTheEnd.add(tagDockerWithBranch)
+                        bitbucketSetCommitStatus(cfg.repo.owner, cfg.repo.name, cfg.repo.commitSha, 'SUCCESSFUL', 'JenkinsKRK-DockerImage', env.BUILD_URL)
+                    }
+                }
+            }
+        } else {
+            info("All images already built, skipping")
+        }
+        if (cfg.app.commitTags.size() > 0) {
+            stage("Adding git tags") {
+                def taggedImages = []
+                docker.withRegistry(dockerProps.dockerRepoUrl, dockerProps.repoCredentialsId) {
+                    cfg.app.commitTags.each { commitTag ->
+                        officialArtifacts.each { artifact ->
+                            def withGitTag = artifact.replace(cfg.app.commitRef, commitTag)
+                            docker.image(artifact).push(commitTag)
+                            dockerImagesWhichShouldBeDeletedAtTheEnd.add(withGitTag)
+                            taggedImages.add(withGitTag)
+                        }
+                    }
+                }
+                storeReturnData(["taggedImages": taggedImages])
+            }
+        }
+        stage("Drop images from local cache") {
+            def removing = "docker rmi --force ${dockerImagesWhichShouldBeDeletedAtTheEnd.join(" ")} 2>/dev/null".toString()
+            echo "Removing command is $removing"
+            sh removing
+        }
+    }
+    storeReturnData(['builtVersion': cfg.app.commitRef])    
 }
