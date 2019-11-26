@@ -84,7 +84,7 @@ void doWork(cfg) {
         if (shouldBuild) {
             currentBuild.setKeepLog(true)
             cfg.statusSet = true
-            docker.withRegistry("https://registry.example.com", dockerProps.repoCredentialsId) {
+            docker.withRegistry(dockerProps.dockerRepoUrl, dockerProps.repoCredentialsId) {
                 def customImage = null
                 def tagDockerWithCommit = renderDockerImageRef(cfg.product, cfg.app.commitRef)
                 def tagDockerWithBranch = renderDockerImageRef(cfg.product, cfg.dockerBranchName)
