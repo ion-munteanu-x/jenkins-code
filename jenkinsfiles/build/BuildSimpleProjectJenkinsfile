@@ -92,6 +92,7 @@ void doWork(cfg) {
                 stage('Build docker images') {
                     tryCatchSetResultFailure('Building image failed.') {
                         customImage = docker.build(tagDockerWithCommit)
+                        customImage.push()
                     }
                 }
 
