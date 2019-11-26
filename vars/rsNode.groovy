@@ -2,7 +2,7 @@ import com.raresociopath.jenkins.exceptions.RSFailure
 
 void call(nodeNameOrBody, Closure body = null) {
     Closure<Object> work = { bodyToExecute ->
-        storeReturnData([:], false)
+        storeData([:], false)
         timestamps {
             ansiColor('xterm') {
                 info(blue("Hi there!"))
@@ -11,7 +11,7 @@ void call(nodeNameOrBody, Closure body = null) {
                     try {
                         bodyToExecute()
                     } catch (RSFailure e) {
-                        storeReturnData([
+                        storeData([
                                 failureReason : e.message,
                                 failureDetails: [
                                         exception: e.cause.getClass().toString(),
@@ -21,7 +21,7 @@ void call(nodeNameOrBody, Closure body = null) {
 //                        throw e
                         error e.message
                     } catch (Exception e) {
-                        storeReturnData([
+                        storeData([
                                 unhandledFailure: e.message,
                                 failureDetails  : [
                                         exception: e.getClass().toString(),
