@@ -23,14 +23,6 @@ class Repository {
         this.shortRepoParam = "${this.safeHumanName}_Version"
     }
 
-    boolean isSbt() {
-        language == "scala" && !library
-    }
-
-    boolean isScala() {
-        language == "scala"
-    }
-
     boolean isJava() {
         language == "java"
     }
@@ -39,12 +31,8 @@ class Repository {
         language == "node"
     }
 
-    boolean isRawDocker() {
-        language == "raw-docker"
-    }
-
-    boolean isIstioMixerAdapter() {
-        language == "istio-adapter"
+    boolean isRawProject() {
+        language == "raw"
     }
 
     String cloneUrl(ssh, server) {

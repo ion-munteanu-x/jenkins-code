@@ -9,7 +9,7 @@ buildscript {
 
 apply plugin: 'groovy'
 
-group = 'com.raresociopath.rare-jenkins-jobs'
+group = 'com.raresociopath.jenkins'
 version = '1.0-SNAPSHOT'
 
 repositories {

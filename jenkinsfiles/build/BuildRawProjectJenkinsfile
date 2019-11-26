@@ -1,0 +1,30 @@
+import com.raresociopath.jenkins.exceptions.RSFailure
+import hudson.AbortException
+import org.jenkinsci.plugins.workflow.steps.FlowInterruptedException
+
+node {
+    timeout(30) {
+        Map cfg = [
+                ref       : env.Repo_Ref.trim(),
+                url       : null, // will be set later
+                force     : env.Force_Rebuild == 'true', // remove second after 1st of January 2020
+                product   : env.Override_Docker_Image_Name.trim().empty ? null : env.Override_Docker_Image_Name.trim(),
+                scmCredsId: env.SCM_CREDENTIALS_ID,
+        ]
+        try {
+            doWork(cfg)
+        } catch (e) {
+            if (!(e instanceof RSFailure || e instanceof AbortException || e instanceof FlowInterruptedException)) {
+                err("Got unknown exception ${e.toString()}")
+            }
+            throw e
+        }
+    }
+}
+
+
+void doWork(cfg) {
+    stage('Prepare an environment') {
+        checkParam(DOCKER_REGISTRY_NAME, 'Please set the DOCKER_REGISTRY_NAME build parameter!')
+    }
+}
