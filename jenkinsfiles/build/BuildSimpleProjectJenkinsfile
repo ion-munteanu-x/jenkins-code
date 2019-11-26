@@ -1,4 +1,4 @@
-//@Library("rs-pipelines@feature/2") _
+@Library("rs-pipelines@feature/2") _
 
 import com.raresociopath.jenkins.exceptions.RSFailure
 import hudson.AbortException
@@ -45,7 +45,23 @@ void doWork(cfg) {
             appendComment("Working with version <b>${cfg.ref}</b>")
             appendComment("of repository <b>${cfg.url}</b>")      
 
-            gitClone(cfg.url, cfg.ref, cfg.scmCredsId)      
+            gitClone(cfg.url, cfg.ref, cfg.scmCredsId)
+
+            cfg.app = getDefaultAppConfig()
+            cfg.product = cfg.product ?: getShOutput('basename -s .git `git config --get remote.origin.url`')
+            def repoId = (cfg.url - ~/.*bitbucket.org[:\/]/ - ~/\.git\/?$/).split("/")
+            cfg.repo = [
+                    owner    : repoId[0],
+                    name     : repoId[1],
+                    commitSha: cfg.app.commit,
+            ]
+            cfg.docker = getDockerConfig()
+            cfg.dockerBranchName = normalizeGitBranchForDocker(cfg.ref)
+            cfg.project = getShOutput('basename -s .git `git config --get remote.origin.url`')
+            appendComment("Product will be <b>${cfg.product}</b>")            
+            
         }
+        cfg.buildId = "build-${cfg.project}-${cfg.app.commitRef}"
+        echo "Full config ${toPrettyJson(cfg)}"
     }
 }
