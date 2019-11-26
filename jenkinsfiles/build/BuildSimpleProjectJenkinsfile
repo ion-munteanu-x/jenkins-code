@@ -84,7 +84,7 @@ void doWork(cfg) {
         if (shouldBuild) {
             currentBuild.setKeepLog(true)
             cfg.statusSet = true
-            docker.withRegistry(dockerProps.dockerRepoUrl, dockerProps.repoCredentialsId) {
+            docker.withRegistry("https://registry.example.com", dockerProps.repoCredentialsId) {
                 def customImage = null
                 def tagDockerWithCommit = renderDockerImageRef(cfg.product, cfg.app.commitRef)
                 def tagDockerWithBranch = renderDockerImageRef(cfg.product, cfg.dockerBranchName)
@@ -98,8 +98,8 @@ void doWork(cfg) {
                 stage('Publish to Registry') {
                     tryCatchSetResultFailure('Pushing of newly crated images failed.') {
                         customImage.push()
-                        //customImage.push(cfg.dockerBranchName)
-                        //dockerImagesWhichShouldBeDeletedAtTheEnd.add(tagDockerWithBranch)                       
+                        customImage.push(cfg.dockerBranchName)
+                        dockerImagesWhichShouldBeDeletedAtTheEnd.add(tagDockerWithBranch)                       
                     }
                 }
             }
