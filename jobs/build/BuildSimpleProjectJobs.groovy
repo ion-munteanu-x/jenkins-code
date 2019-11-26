@@ -19,7 +19,7 @@ pipelineJob(Jobs.BuildSimpleProject) {
     parameters {
         def Param = DSLParams.get(delegate) 
         Param('Repo_Url', 'url to repository, any of format, https or ssh', '')
-        Param('Repo_Ref', 'develop', 'Reference to do checkout')
+        Param('Repo_Ref', 'master', 'Reference to do checkout')
         Param("Predefined_Low_Precedence_Repo_Url", choices, '')
         Param.forceRebuild()
         Param('Override_Docker_Image_Name', '', 'fill if you want to override default value, which is repository name')
