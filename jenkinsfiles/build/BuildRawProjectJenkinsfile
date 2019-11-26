@@ -1,8 +1,10 @@
+//@Library("rs-pipelines@feature/2") _
+
 import com.raresociopath.jenkins.exceptions.RSFailure
 import hudson.AbortException
 import org.jenkinsci.plugins.workflow.steps.FlowInterruptedException
 
-node {
+rsNode {
     timeout(30) {
         Map cfg = [
                 ref       : env.Repo_Ref.trim(),

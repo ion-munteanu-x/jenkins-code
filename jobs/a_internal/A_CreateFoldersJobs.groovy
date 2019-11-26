@@ -12,5 +12,5 @@ folder(Jobs.BuildJobsFolder) {
 
 folder(Jobs.BuildRawJobsFolder) {
     displayName('Build Raw Projects')
-    description('This folder contains build jobs.')
+    description('This folder contains build jobs for projects that have Dockerfile at the root of the repository.')
 }

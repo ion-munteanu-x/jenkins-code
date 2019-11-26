@@ -13,7 +13,7 @@ def choices = Repos.AllProjects.findAll { it.isRawProject() }.collect { cloner.c
 choices.add(0, "")
 
 pipelineJob(Jobs.BuildRawProject) {
-    displayName("Build raw project")
+    displayName("Build raw project generic")
     description("This project assumes that repository contains Dockerfile file in project's root<br/>" +
             "You can provide REPO_URL parameter, but it would be simpler to use one of predefined urls<br/>" +
             "for use one of predefined, simply select one of possible url in PREDEFINED_LOW_PRECEDENCE_REPO_URL<br/>" +
