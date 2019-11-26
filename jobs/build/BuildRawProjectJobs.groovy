@@ -31,7 +31,7 @@ pipelineJob(Jobs.BuildRawProject) {
     environmentVariables {
         GlobalVars.putHere(delegate)
     }
-    new DSL(this).pipeline(delegate, 'DockerImages/BuildRawProject', '${Dsl_Version}')
+    new DSL(this).pipeline(delegate, 'build/BuildRawProject', '${Dsl_Version}')
 }
 
 Repos.AllProjects.findAll { it.isRawProject() }.each { proj ->
@@ -53,6 +53,6 @@ Repos.AllProjects.findAll { it.isRawProject() }.each { proj ->
             GlobalVars.putHere(delegate)
             env('Repo_Url', cloner.cloneUrl(proj))
         }
-        new DSL(this).pipeline(delegate, 'DockerImages/BuildRawProject', '${Dsl_Version}')
+        new DSL(this).pipeline(delegate, 'build/BuildRawProject', '${Dsl_Version}')
     }
 }
