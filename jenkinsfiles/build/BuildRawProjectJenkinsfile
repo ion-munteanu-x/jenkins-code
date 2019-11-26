@@ -41,8 +41,11 @@ void doWork(cfg) {
             if (cfg.url.empty) {
                 error("URL of git repository to clone cannot be empty")
             }
-            
+
             appendComment("Working with version <b>${cfg.ref}</b>")
-            appendComment("of repository <b>${cfg.url}</b>")            
+            appendComment("of repository <b>${cfg.url}</b>")      
+
+            gitClone(cfg.url, cfg.ref, cfg.scmCredsId)      
+        }
     }
 }
