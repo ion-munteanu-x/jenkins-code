@@ -67,8 +67,6 @@ void doWork(cfg) {
     def dockerProps = cfg.docker
     def shouldBuild = cfg.force
 
-    def customImage = null
-
     List<String> officialArtifacts = [renderDockerImageRef(cfg.product, cfg.app.commitRef)]
     List<String> dockerImagesWhichShouldBeDeletedAtTheEnd = [] + officialArtifacts
 
@@ -87,6 +85,7 @@ void doWork(cfg) {
             currentBuild.setKeepLog(true)
             cfg.statusSet = true
             docker.withRegistry(dockerProps.dockerRepoUrl, dockerProps.repoCredentialsId) {
+                def customImage = null
                 def tagDockerWithCommit = renderDockerImageRef(cfg.product, cfg.app.commitRef)
                 def tagDockerWithBranch = renderDockerImageRef(cfg.product, cfg.dockerBranchName)
 
@@ -95,18 +94,13 @@ void doWork(cfg) {
                         customImage = docker.build(tagDockerWithCommit)
                     }
                 }
-            }
 
-            docker.withRegistry(dockerProps.dockerRepoUrl, dockerProps.repoCredentialsId) {
                 stage('Publish to Registry') {
-                    tryCatchSetResultFailure('Pushing of newly crated images failed.') {
-                        customImage.push()
-                        customImage.push(cfg.dockerBranchName)
-                        dockerImagesWhichShouldBeDeletedAtTheEnd.add(tagDockerWithBranch)
-                    }
+                    customImage.push()
+                    customImage.push(cfg.dockerBranchName)
+                    dockerImagesWhichShouldBeDeletedAtTheEnd.add(tagDockerWithBranch)
                 }
             }
-            
         } else {
             info("All images already built, skipping")
         }
