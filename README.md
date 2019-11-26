@@ -1,5 +1,5 @@
 # rs-jenkins-jobs
-Jenkins Jobs.
+Jenkins Jobs Library based on DSL plugin.
 
 
 ## Jenkins plugins required:
