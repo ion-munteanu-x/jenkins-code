@@ -2,14 +2,12 @@ package com.raresociopath.jenkins.data
 
 class GlobalVars {
 
-    private Const = StaticData.Constants
-
     static void putDockerRegistry(delegate) {
-        delegate.env("DOCKER_REGISTRY_NAME", "$Const.DockerRegistry")
+        delegate.env("DOCKER_REGISTRY_NAME", "$StaticData.Constants.DockerRegistry")
     }
 
     static void putDockerCredentialsId(delegate) {
-        delegate.env('DOCKER_REGISTRY_JENKINS_CREDENTIALS_ID', "$Const.DockerRegistryJenkinsCredentialsId")
+        delegate.env('DOCKER_REGISTRY_JENKINS_CREDENTIALS_ID', "$StaticData.Constants.DockerRegistryJenkinsCredentialsId")
     }
 
     static void putHere(delegate) {
