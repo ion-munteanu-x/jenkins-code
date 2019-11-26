@@ -14,10 +14,7 @@ choices.add(0, "")
 
 pipelineJob(Jobs.BuildSimpleProject) {
     displayName("Build simple project generic")
-    description("This project assumes that repository contains Dockerfile file in project's root<br/>" +
-            "You can provide REPO_URL parameter, but it would be simpler to use one of predefined urls<br/>" +
-            "for use one of predefined, simply select one of possible url in PREDEFINED_LOW_PRECEDENCE_REPO_URL<br/>" +
-            "and leave REPO_URL unchanged.")
+    description("This project assumes that repository contains Dockerfile file in project's root")
     logRotator(7, 50)
     parameters {
         def Param = DSLParams.get(delegate) 
@@ -36,11 +33,8 @@ pipelineJob(Jobs.BuildSimpleProject) {
 
 Repos.AllProjects.findAll { it.isSimpleProject() }.each { proj ->
     pipelineJob(proj.distJobId) {
-        displayName("Build docker image of ${proj.humanName}")
-        description("This project assumes that repository contains Dockerfile file in project's root<br/>" +
-                "You can provide REPO_URL parameter, but it would be simpler to use one of predefined urls<br/>" +
-                "for use one of predefined, simply select one of possible url in PREDEFINED_LOW_PRECEDENCE_REPO_URL<br/>" +
-                "and leave REPO_URL unchanged.")
+        displayName("Build ${proj.humanName}")
+        description("This project assumes that repository contains Dockerfile file in project's root")
         logRotator(7, 50)
         parameters {
             def Param = DSLParams.get(delegate) 

@@ -28,7 +28,7 @@ rsNode {
 void doWork(cfg) {
     stage('Prepare') {
         checkParam(DOCKER_REGISTRY_NAME, 'Please set the DOCKER_REGISTRY_NAME build parameter!')
-//        checkParam(DOCKER_REGISTRY_JENKINS_CREDENTIALS_ID, 'Please set the DOCKER_REGISTRY_JENKINS_CREDENTIALS_ID build parameter in order to push image to the repo!')
+        checkParam(DOCKER_REGISTRY_JENKINS_CREDENTIALS_ID, 'Please set the DOCKER_REGISTRY_JENKINS_CREDENTIALS_ID build parameter in order to push image to the repo!')
 //        checkParam(SCM_CREDENTIALS_ID, 'Please set the SCM_CREDENTIALS_ID build parameter in order to clone the repo!')
 
         tryCatchSetResultFailure('Setup failed.') {
@@ -45,7 +45,88 @@ void doWork(cfg) {
             appendComment("Working with version <b>${cfg.ref}</b>")
             appendComment("of repository <b>${cfg.url}</b>")      
 
-            gitClone(cfg.url, cfg.ref, cfg.scmCredsId)      
+            gitClone(cfg.url, cfg.ref, cfg.scmCredsId)
+
+            cfg.app = getDefaultAppConfig()
+            cfg.product = cfg.product ?: getShOutput('basename -s .git `git config --get remote.origin.url`')
+            def repoId = (cfg.url - ~/.*bitbucket.org[:\/]/ - ~/\.git\/?$/).split("/")
+            cfg.repo = [
+                    owner    : repoId[0],
+                    name     : repoId[1],
+                    commitSha: cfg.app.commit,
+            ]
+            cfg.docker = getDockerConfig()
+            cfg.dockerBranchName = normalizeGitBranchForDocker(cfg.ref)
+            cfg.project = getShOutput('basename -s .git `git config --get remote.origin.url`')
+            appendComment("Product will be <b>${cfg.product}</b>")            
+            
+        }
+        cfg.buildId = "build-${cfg.project}-${cfg.app.commitRef}"
+        echo "Full config ${toPrettyJson(cfg)}"
+    }
+    def dockerProps = cfg.docker
+    def shouldBuild = cfg.force
+
+    List<String> officialArtifacts = [renderDockerImageRef(cfg.product, cfg.app.commitRef)]
+    List<String> dockerImagesWhichShouldBeDeletedAtTheEnd = [] + officialArtifacts
+
+    lock(resource: cfg.buildId, quantity: 1, variable: '_') {
+
+        if (!shouldBuild) {
+            stage('Check if all products are built') {
+                catchError {
+                    shouldBuild = !checkDockerImagesInRegistry(dockerProps, officialArtifacts)
+                            .findAll { !it.value }
+                            .isEmpty()
+                }
+            }
+        }
+        if (shouldBuild) {
+            currentBuild.setKeepLog(true)
+            cfg.statusSet = true
+            docker.withRegistry(dockerProps.dockerRepoUrl, dockerProps.repoCredentialsId) {
+                def customImage = null
+                def tagDockerWithCommit = renderDockerImageRef(cfg.product, cfg.app.commitRef)
+                def tagDockerWithBranch = renderDockerImageRef(cfg.product, cfg.dockerBranchName)
+
+                stage('Build docker images') {
+                    tryCatchSetResultFailure('Building image failed.') {
+                        customImage = docker.build(tagDockerWithCommit)
+                    }
+                }
+
+                stage('Publish to Registry') {
+                    tryCatchSetResultFailure('Pushing of newly crated images failed.') {
+                        customImage.push()
+                        customImage.push(cfg.dockerBranchName)
+                        dockerImagesWhichShouldBeDeletedAtTheEnd.add(tagDockerWithBranch)                       
+                    }
+                }
+            }
+        } else {
+            info("All images already built, skipping")
+        }
+        if (cfg.app.commitTags.size() > 0) {
+            stage("Adding git tags") {
+                def taggedImages = []
+                docker.withRegistry(dockerProps.dockerRepoUrl, dockerProps.repoCredentialsId) {
+                    cfg.app.commitTags.each { commitTag ->
+                        officialArtifacts.each { artifact ->
+                            def withGitTag = artifact.replace(cfg.app.commitRef, commitTag)
+                            docker.image(artifact).push(commitTag)
+                            dockerImagesWhichShouldBeDeletedAtTheEnd.add(withGitTag)
+                            taggedImages.add(withGitTag)
+                        }
+                    }
+                }
+                storeData(["taggedImages": taggedImages])
+            }
+        }
+        stage("Drop images from local cache") {
+            def removing = "docker rmi --force ${dockerImagesWhichShouldBeDeletedAtTheEnd.join(" ")} 2>/dev/null".toString()
+            echo "Removing command is $removing"
+            sh removing
         }
     }
+    storeData(['builtVersion': cfg.app.commitRef])    
 }
