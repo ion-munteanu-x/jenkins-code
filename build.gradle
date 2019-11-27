@@ -49,10 +49,7 @@ sourceSets {
     jobs {
         groovy {
             srcDirs = [
-                    'HelperJobs', 'Hooks', 'Internal', 'PerfTests', 'PerfTestsFromFatso',
-                    'PerfEnv', 'PRs', 'ResilienceTests', 'Build', 'Deploy', 'Playground',
-                    'Development', 'DockerImages', 'EC2', 'Periodic', 'ScalabilityTests',
-                    'UpgradeTests', 'DeveloperTools',
+                    'internal', 'build'
             ].collect { "jobs/$it" }
             compileClasspath += main.compileClasspath
         }
@@ -62,8 +59,7 @@ sourceSets {
     jenkinsfiles {
         groovy {
             srcDirs = [
-                    'PerfTests', 'PerfTestsFromFatso', 'ResilienceTests', 'HelperJobs', 'Internal', 'EC2', 'Playground',
-                    'DockerImages', 'PerfEnv', 'ScalabilityTests', 'UpgradeTests', 'DeveloperTools',
+                    'internal', 'build'
             ].collect { "jenkinsfiles/$it" }
             compileClasspath += main.compileClasspath
         }
@@ -100,7 +96,6 @@ dependencies {
 
     testCompile('org.jenkins-ci.main:jenkins-test-harness:2.33') {
         exclude group: 'org.netbeans.modules', module: 'org-netbeans-insane'
-        // https://github.com/sheehan/job-dsl-gradle-example/issues/90
     }
 
     compile 'org.jenkins-ci.plugins:script-security:1.44@jar'

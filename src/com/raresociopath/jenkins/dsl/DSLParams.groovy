@@ -37,7 +37,7 @@ class DSLParams {
         call(name, version != null ? version : repo.defaultBranch, "Version of the ${repo.humanName}.${appendix} Can be one one of tag, branch, full commit sha or shorter prefix of it.")
     }
 
-    void dsl(version = null) {
+    void dslVersion(version = null) {
         DSLParam.dslParam(version, del)
     }
 
