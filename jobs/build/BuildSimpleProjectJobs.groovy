@@ -28,7 +28,7 @@ pipelineJob(Jobs.BuildSimpleProject) {
     environmentVariables {
         GlobalVars.inject(delegate)
     }
-    new DSL(this).pipeline(delegate, 'build/BuildSimpleProject', '${Dsl_Version}')
+    new DSL(this).pipeline(delegate, 'build/BuildSimpleProject', '${Pipeline_Version}')
 }
 
 Repos.AllProjects.findAll { it.isSimpleProject() }.each { proj ->
@@ -47,6 +47,6 @@ Repos.AllProjects.findAll { it.isSimpleProject() }.each { proj ->
             GlobalVars.inject(delegate)
             env('Repo_Url', cloner.cloneUrl(proj))
         }
-        new DSL(this).pipeline(delegate, 'build/BuildSimpleProject', '${Dsl_Version}')
+        new DSL(this).pipeline(delegate, 'build/BuildSimpleProject', '${Pipeline_Version}')
     }
 }

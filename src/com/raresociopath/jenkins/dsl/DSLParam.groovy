@@ -51,6 +51,6 @@ class DSLParam {
     }
 
     static def dslParam(value, delegate) {
-        paramImpl('Dsl_Version', value ?: new Repositories().JenkinsJobs.defaultBranch, 'Jobs DSL version', delegate, null)
+        paramImpl('Pipeline_Version', value ?: new Repositories().JenkinsJobs.defaultBranch, 'Jobs DSL version', delegate, null)
     }
 }
