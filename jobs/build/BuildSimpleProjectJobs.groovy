@@ -28,6 +28,7 @@ pipelineJob(Jobs.BuildSimpleProject) {
     environmentVariables {
         GlobalVars.putHere(delegate)
         propertiesFile('env.properties')
+        keepBuildVariables(true)
     }
     new DSL(this).pipeline(delegate, 'build/BuildSimpleProject', '${Dsl_Version}')
 }
