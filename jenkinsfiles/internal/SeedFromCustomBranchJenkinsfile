@@ -5,7 +5,7 @@ node {
             timestamps {
                 def cfg = [
                         ref       : env.Dsl_Version,
-                        url       : gitCloneUrl('rs-jenkins-jobs'),
+                        url       : gitCloneUrl('rs-pipelines'),
                         scmCredsId: env.SCM_CREDENTIALS_ID,
                 ]
                 doWork(cfg)
