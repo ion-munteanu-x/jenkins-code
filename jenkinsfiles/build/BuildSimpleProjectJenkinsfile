@@ -24,7 +24,6 @@ rsNode {
     }
 }
 
-
 void doWork(cfg) {
     stage('Prepare') {
         checkParam(DOCKER_REGISTRY_NAME, 'Please set the DOCKER_REGISTRY_NAME build parameter!')
