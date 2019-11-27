@@ -10,7 +10,7 @@ class GlobalVars {
         delegate.env('DOCKER_REGISTRY_JENKINS_CREDENTIALS_ID', "$StaticData.Constants.DockerRegistryJenkinsCredentialsId")
     }
 
-    static void putHere(delegate) {
+    static void inject(delegate) {
         putDockerRegistry(delegate)
         putDockerCredentialsId(delegate)
     }
