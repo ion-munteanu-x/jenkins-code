@@ -23,7 +23,7 @@ pipelineJob(Jobs.BuildSimpleProject) {
         Param("Predefined_Low_Precedence_Repo_Url", choices, '')
         Param.forceRebuild()
         Param('Override_Docker_Image_Name', '', 'fill if you want to override default value, which is repository name')
-        Param.pipelineVersion()
+        Param.dslVersion()
     }
     environmentVariables {
         GlobalVars.inject(delegate)
@@ -41,7 +41,7 @@ Repos.AllProjects.findAll { it.isSimpleProject() }.each { proj ->
             Param.ref('Repo_Ref', proj)
             Param.forceRebuild()
             Param('Override_Docker_Image_Name', '', 'fill if you want to override default value, which is repository name')
-            Param.pipelineVersion()
+            Param.dslVersion()
         }
         environmentVariables {
             GlobalVars.inject(delegate)
