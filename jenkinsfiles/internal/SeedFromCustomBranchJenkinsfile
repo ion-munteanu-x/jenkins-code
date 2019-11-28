@@ -1,4 +1,6 @@
-//@Library("rs-pipelines@feature/test") _
+@Library("rs-pipelines@feature/test") _
+
+import com.raresociopath.jenkins.theme.ThemeConfigurator
 
 node {
     timeout(time: 60, unit: 'MINUTES') {
@@ -14,6 +16,9 @@ node {
 }
 
 void doWork(cfg) {
+    stage("Configure Jenkins theme") {
+        ThemeConfigurator.configure()
+    }    
     stage("Do work") {
         deleteDir()
         envInfo()
