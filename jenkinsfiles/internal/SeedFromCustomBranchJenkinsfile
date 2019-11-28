@@ -1,4 +1,4 @@
-@Library("rs-pipelines@feature/test") _
+@Library("rs-pipelines@feature/theme") _
 
 import com.raresociopath.jenkins.theme.ThemeConfigurator
 
