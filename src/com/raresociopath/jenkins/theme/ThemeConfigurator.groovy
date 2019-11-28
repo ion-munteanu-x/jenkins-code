@@ -17,9 +17,8 @@ class ThemeConfigurator {
 
     static def configure() {
         themeDecorator.setElements([
-        new CssUrlThemeElement('https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-blue.css')
+            new CssUrlThemeElement('https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-blue.css')
         ])
-
         Jenkins.instance.save()
     }
 }

@@ -2,6 +2,8 @@ package com.raresociopath.jenkins.data
 
 class Jobs {
 
+    public String Seed = "seed"
+
     //folders
     public String InternalJobsFolder = "internal"
     public String BuildJobsFolder = "build"
