@@ -13,7 +13,7 @@ import org.jenkinsci.plugins.simpletheme.CssUrlThemeElement
 
 class ThemeConfigurator {
 
-    def themeDecorator = Jenkins.instance.getExtensionList(org.codefirst.SimpleThemeDecorator.class).first()
+    def static themeDecorator = Jenkins.instance.getExtensionList(org.codefirst.SimpleThemeDecorator.class).first()
 
     static def configure() {
         themeDecorator.setElements([
