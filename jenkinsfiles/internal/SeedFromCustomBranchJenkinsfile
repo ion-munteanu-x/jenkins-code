@@ -14,12 +14,18 @@ node {
 }
 
 void doWork(cfg) {
-    stage("Do work") {
+    stage("Checkout"){
         deleteDir()
         envInfo()
         appendComment("Working with version <b>${cfg.ref}</b>")
 
         gitClone(cfg.url, cfg.ref, null, null)
+    }
+    stage("Configuration"){
+         sh("cp config/jenkins.yaml env.JENKINS_HOME/var/jenkins_home/jenkins.yaml")
+
+    }
+    stage("Do work") {
 
         cfg.isMasterMerged = cfg.ref == 'master' ? true : getShOutput("git merge-base --is-ancestor origin/master origin/$cfg.ref && echo OK || echo NOT OK ") == "OK"
         if (!cfg.isMasterMerged) {
