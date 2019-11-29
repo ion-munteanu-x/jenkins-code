@@ -2,6 +2,9 @@ node {
     timeout(time: 60, unit: 'MINUTES') {
             timestamps {
                 def cfg = [
+                        ref         : env.Dsl_Version,
+                        url         : gitCloneUrl('rs-pipelines'),
+                        scmCredsId  : env.SCM_CREDENTIALS_ID,
                 ]
                 doWork(cfg)
             }
@@ -15,11 +18,6 @@ void doWork(cfg) {
         envInfo()
         appendComment("Working with version <b>${cfg.ref}</b>")
         gitClone(cfg.url, cfg.ref, null, null)
-    }
-
-    stage("Seed Jenkins configuration"){
-         sh("cp config/jenkins.yaml ${JENKINS_HOME}/jenkins.yaml")
-         sh("cp config/theme/rs.css ${JENKINS_HOME}/userContent/rs.css")
     }
 
     stage("Seed DSL Jobs") {

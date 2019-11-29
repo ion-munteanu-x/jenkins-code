@@ -10,5 +10,5 @@ pipelineJob(Jobs.SeedCustom) {
         def Params = DSLParams.get(delegate)            
         Params.dslVersion()
     }
-    new DSL(this).pipeline(delegate, 'internal/SeedFromCustomBranch', '${Dsl_Version}')
+    new DSL(this).pipeline(delegate, 'internal/SeedJobs', '${Dsl_Version}')
 }
