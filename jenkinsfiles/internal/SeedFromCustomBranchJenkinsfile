@@ -5,7 +5,7 @@ node {
             timestamps {
                 def cfg = [
                         ref         : env.Dsl_Version,
-                        jenkinsHome : env.JENKINS_HOME
+                        jenkinsHome : env.JENKINS_HOME,
                         url         : gitCloneUrl('rs-pipelines'),
                         scmCredsId  : env.SCM_CREDENTIALS_ID,
                 ]
