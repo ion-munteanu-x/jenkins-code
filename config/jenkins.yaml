@@ -1,4 +1,5 @@
 jenkins:
+  systemMessage: "RS Jenkins"
   securityRealm:
     local:
       allowsSignup: true
