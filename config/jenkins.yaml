@@ -15,4 +15,4 @@ unclassified:
   simple-theme-plugin:
     elements:
       - cssUrl:
-          url: "https://fishi.devtail.io/content-images/jenkins-devtail-theme.css"
+          url: "http://localhost/userContent/rs.css"
