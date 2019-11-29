@@ -17,7 +17,7 @@ security:
 unclassified:
   globalLibraries:
     libraries:
-      - name: "awesome-lib"
+      - name: "rs-jenkins-lib"
         retriever:
           modernSCM:
             scm:
@@ -27,4 +27,4 @@ unclassified:
   simple-theme-plugin:
     elements:
       - cssUrl:
-          url: "${HUDSON_URL}/userContent/rs.css"
+          url: "${JENKINS_URL}/userContent/rs.css"
