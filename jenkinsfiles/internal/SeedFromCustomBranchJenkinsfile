@@ -22,7 +22,7 @@ void doWork(cfg) {
         gitClone(cfg.url, cfg.ref, null, null)
     }
     stage("Configuration"){
-
+         sh("cp config/theme/rs.css ${JENKINS_HOME}/userContent/rs.css")
          sh("cp config/jenkins.yaml ${JENKINS_HOME}/jenkins.yaml")
 
     }
