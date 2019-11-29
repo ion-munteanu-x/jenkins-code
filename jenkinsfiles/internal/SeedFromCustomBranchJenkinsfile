@@ -7,6 +7,7 @@ node {
                         ref         : env.Dsl_Version,
                         url         : gitCloneUrl('rs-pipelines'),
                         scmCredsId  : env.SCM_CREDENTIALS_ID,
+                        jenkinsHome : ${JENKINS_HOME}
                 ]
                 doWork(cfg)
             }
@@ -14,16 +15,19 @@ node {
 }
 
 void doWork(cfg) {
+
     stage("Checkout"){
         deleteDir()
         envInfo()
         appendComment("Working with version <b>${cfg.ref}</b>")
         gitClone(cfg.url, cfg.ref, null, null)
     }
-    stage("Configure Jenkins"){
-         sh("cp config/theme/rs.css ${JENKINS_HOME}/userContent/rs.css")
-         sh("cp config/jenkins.yaml ${JENKINS_HOME}/jenkins.yaml")
+
+    stage("Seed Jenkins configuration"){
+         sh("cp config/jenkins.yaml ${cfg.jenkinsHome}/jenkins.yaml")
+         sh("cp config/theme/rs.css ${cfg.jenkinsHome}/userContent/rs.css")
     }
+
     stage("Seed DSL Jobs") {
         cfg.isMasterMerged = cfg.ref == 'master' ? true : getShOutput("git merge-base --is-ancestor origin/master origin/$cfg.ref && echo OK || echo NOT OK ") == "OK"
         if (!cfg.isMasterMerged) {

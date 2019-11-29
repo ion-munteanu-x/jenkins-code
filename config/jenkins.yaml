@@ -11,8 +11,20 @@ jenkins:
       permissions:
         - "Overall/Read:anonymous"
         - "Overall/Administer:authenticated"
+security:
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: false         
 unclassified:
+  globalLibraries:
+    libraries:
+      - name: "awesome-lib"
+        retriever:
+          modernSCM:
+            scm:
+              git:
+                remote: "https://github.com/raresociopath/rs-pipelines.git"
+                #credentialsId: "no-cred"                
   simple-theme-plugin:
     elements:
       - cssUrl:
-          url: "http://localhost/jenkins/userContent/rs.css"
+          url: "${HUDSON_URL}/userContent/rs.css"
