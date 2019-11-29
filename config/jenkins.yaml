@@ -1,10 +1,10 @@
 jenkins:
   securityRealm:
     local:
-      allowsSignup: false
+      allowsSignup: true
       users:
-        - id: ion
-          password: ion
+        - id: admin
+          password: admin
 
   authorizationStrategy:
     globalMatrix:
@@ -13,12 +13,13 @@ jenkins:
         - "Overall/Administer:authenticated"
 security:
   globalJobDslSecurityConfiguration:
-    useScriptSecurity: false         
+    useScriptSecurity: false  
 unclassified:
   globalLibraries:
     libraries:
-      - name: "rs-jenkins-lib"
+      - name: "rs-library"
         defaultVersion: "master"
+        implicit: true
         retriever:
           modernSCM:
             scm:
@@ -28,4 +29,4 @@ unclassified:
   simple-theme-plugin:
     elements:
       - cssUrl:
-          url: "${JENKINS_URL}/userContent/rs.css"
+          url: "http://35.177.1.81/jenkins/userContent/rs.css"
