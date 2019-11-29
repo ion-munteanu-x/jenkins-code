@@ -1,3 +1,16 @@
+jenkins:
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: ion
+          password: ion
+
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+        - "Overall/Read:anonymous"
+        - "Overall/Administer:authenticated"
 unclassified:
   simple-theme-plugin:
     elements:
