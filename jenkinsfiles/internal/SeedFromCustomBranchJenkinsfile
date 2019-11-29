@@ -5,7 +5,6 @@ node {
             timestamps {
                 def cfg = [
                         ref         : env.Dsl_Version,
-                        jenkinsHome : env.JENKINS_HOME,
                         url         : gitCloneUrl('rs-pipelines'),
                         scmCredsId  : env.SCM_CREDENTIALS_ID,
                 ]
@@ -23,7 +22,8 @@ void doWork(cfg) {
         gitClone(cfg.url, cfg.ref, null, null)
     }
     stage("Configuration"){
-         sh("cp config/jenkins.yaml $cfg.JENKINS_HOME/var/jenkins_home/jenkins.yaml")
+
+         sh("cp config/jenkins.yaml ${JENKINS_HOME}/jenkins.yaml")
 
     }
     stage("Do work") {
