@@ -1,0 +1,26 @@
+node {
+    timeout(time: 60, unit: 'MINUTES') {
+            timestamps {
+                def cfg = [
+                        ref         : "master",
+                        url         : "https://github.com/raresociopath/rs-pipelines.git",
+                        scmCredsId  : env.SCM_CREDENTIALS_ID,
+                ]
+                doWork(cfg)
+            }
+    }
+}
+
+void doWork(cfg) {
+
+  stage('Checkout') {
+    // Clean workspace and checkout shared library repository on the jenkins master
+    cleanWs()
+    checkout scm
+}
+
+    stage("Seed Jenkins configuration"){
+         sh("cp config/jenkins.yaml ${JENKINS_HOME}/jenkins.yaml")
+         sh("cp config/theme/rs.css ${JENKINS_HOME}/userContent/rs.css")
+    }
+}

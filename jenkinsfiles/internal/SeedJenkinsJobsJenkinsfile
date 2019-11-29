@@ -1,12 +1,7 @@
-//@Library("rs-pipelines@feature/test") _
-
 node {
     timeout(time: 60, unit: 'MINUTES') {
             timestamps {
                 def cfg = [
-                        ref         : env.Dsl_Version,
-                        url         : gitCloneUrl('rs-pipelines'),
-                        scmCredsId  : env.SCM_CREDENTIALS_ID,
                 ]
                 doWork(cfg)
             }
