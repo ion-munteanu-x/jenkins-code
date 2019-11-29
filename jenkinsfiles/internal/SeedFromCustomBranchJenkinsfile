@@ -18,16 +18,13 @@ void doWork(cfg) {
         deleteDir()
         envInfo()
         appendComment("Working with version <b>${cfg.ref}</b>")
-
         gitClone(cfg.url, cfg.ref, null, null)
     }
-    stage("Configuration"){
+    stage("Configure Jenkins"){
          sh("cp config/theme/rs.css ${JENKINS_HOME}/userContent/rs.css")
          sh("cp config/jenkins.yaml ${JENKINS_HOME}/jenkins.yaml")
-
     }
-    stage("Do work") {
-
+    stage("Seed DSL Jobs") {
         cfg.isMasterMerged = cfg.ref == 'master' ? true : getShOutput("git merge-base --is-ancestor origin/master origin/$cfg.ref && echo OK || echo NOT OK ") == "OK"
         if (!cfg.isMasterMerged) {
             appendComment("Branch <b>$cfg.ref doesn't contain latest master</b>")

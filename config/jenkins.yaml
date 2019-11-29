@@ -15,4 +15,4 @@ unclassified:
   simple-theme-plugin:
     elements:
       - cssUrl:
-          url: "http://localhost/userContent/rs.css"
+          url: "http://localhost/jenkins/userContent/rs.css"
