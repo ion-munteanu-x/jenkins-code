@@ -18,6 +18,7 @@ unclassified:
   globalLibraries:
     libraries:
       - name: "rs-jenkins-lib"
+        defaultVersion: "master"
         retriever:
           modernSCM:
             scm:
