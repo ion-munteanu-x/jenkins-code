@@ -1,4 +1,4 @@
-import com.raresociopath.jenkins.jobs.dsl.DSLScm
+import com.raresociopath.jenkins.dsl.DSLScm
 import com.raresociopath.jenkins.dsl.DSLParams
 
 job("internal/SignatureApprove") {
