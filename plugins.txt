@@ -1,0 +1,5 @@
+git
+job-dsl
+envinject
+groovy
+ansiColor

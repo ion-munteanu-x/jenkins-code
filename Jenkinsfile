@@ -13,12 +13,10 @@ void doWork(cfg) {
         cleanWs()
         checkout scm
     }
+    stage("Seed Configuration"){
+         sh("cp config/jenkins.yaml ${JENKINS_HOME}/jenkins.yaml")
+    }    
     stage("Seed Jobs"){
         jobDsl targets: 'jobs/**/*Jobs.groovy', additionalClasspath: 'src/'
     }  
-    // stage("Seed Configuration"){
-    //      sh("cp config/jenkins.yaml ${JENKINS_HOME}/jenkins.yaml")
-    //      sh("cp config/theme/rs.css ${JENKINS_HOME}/userContent/rs.css")
-    //      load('scripts/ApplyJenkinsConfiguration.groovy')
-    // }
 }

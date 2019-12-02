@@ -2,7 +2,7 @@ jenkins:
   systemMessage: "RS Jenkins"
   securityRealm:
     local:
-      allowsSignup: true
+      allowsSignup: false
       users:
         - id: admin
           password: admin
@@ -16,9 +16,6 @@ security:
   globalJobDslSecurityConfiguration:
     useScriptSecurity: false  
 unclassified:
-  scriptApproval:
-    approvedSignatures:
-      - staticMethod jenkins.model.Jenkins get
   globalLibraries:
     libraries:
       - name: "rs-library"
@@ -33,4 +30,4 @@ unclassified:
   simple-theme-plugin:
     elements:
       - cssUrl:
-          url: "http://35.177.1.81/jenkins/userContent/rs.css"
+          url: "https://raw.githubusercontent.com/raresociopath/rs-pipelines/master/config/theme/rs.css"
