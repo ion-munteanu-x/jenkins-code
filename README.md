@@ -18,6 +18,7 @@ Jenkins Pipelines based on DSL plugin.
 ## Jenkins plugins required:
 <ul>
 <li>Job DSL</li>
+<li>Configuration as Code</li>
 <li>AnsiColor</li>
 <li>EnvInject API Plugin</li>
 <li>Environment Injector Plugin</li>

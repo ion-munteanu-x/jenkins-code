@@ -1,12 +1,10 @@
-//@Library("rs-pipelines@feature/test") _
-
 node {
     timeout(time: 60, unit: 'MINUTES') {
             timestamps {
                 def cfg = [
-                        ref       : env.Dsl_Version,
-                        url       : gitCloneUrl('rs-pipelines'),
-                        scmCredsId: env.SCM_CREDENTIALS_ID,
+                        ref         : env.Dsl_Version,
+                        url         : gitCloneUrl('rs-pipelines'),
+                        scmCredsId  : env.SCM_CREDENTIALS_ID,
                 ]
                 doWork(cfg)
             }
@@ -14,13 +12,15 @@ node {
 }
 
 void doWork(cfg) {
-    stage("Do work") {
+
+    stage("Checkout"){
         deleteDir()
         envInfo()
         appendComment("Working with version <b>${cfg.ref}</b>")
-
         gitClone(cfg.url, cfg.ref, null, null)
+    }
 
+    stage("Seed DSL Jobs") {
         cfg.isMasterMerged = cfg.ref == 'master' ? true : getShOutput("git merge-base --is-ancestor origin/master origin/$cfg.ref && echo OK || echo NOT OK ") == "OK"
         if (!cfg.isMasterMerged) {
             appendComment("Branch <b>$cfg.ref doesn't contain latest master</b>")

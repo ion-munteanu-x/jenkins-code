@@ -1,0 +1,33 @@
+jenkins:
+  systemMessage: "RS Jenkins"
+  securityRealm:
+    local:
+      allowsSignup: true
+      users:
+        - id: admin
+          password: admin
+
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+        - "Overall/Read:anonymous"
+        - "Overall/Administer:authenticated"
+security:
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: false  
+unclassified:
+  globalLibraries:
+    libraries:
+      - name: "rs-library"
+        defaultVersion: "master"
+        implicit: true
+        retriever:
+          modernSCM:
+            scm:
+              git:
+                remote: "https://github.com/raresociopath/rs-pipelines.git"
+                #credentialsId: "no-cred"                
+  simple-theme-plugin:
+    elements:
+      - cssUrl:
+          url: "http://35.177.1.81/jenkins/userContent/rs.css"
