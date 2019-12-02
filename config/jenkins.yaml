@@ -30,4 +30,4 @@ unclassified:
   simple-theme-plugin:
     elements:
       - cssUrl:
-          url: "http://35.176.145.186/jenkins/userContent/rs.css"
+          url: "https://raw.githubusercontent.com/raresociopath/rs-pipelines/master/config/theme/rs.css"
