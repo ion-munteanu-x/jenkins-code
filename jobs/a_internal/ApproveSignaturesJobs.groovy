@@ -10,6 +10,6 @@ job("internal/SignatureApprove") {
         timestamps()
     }
     steps {
-        systemGroovyScriptFile('groovy-scripts/ApproveSignatures.groovy')
+        systemGroovyScriptFile(readFileFromWorkspace('groovy-scripts/ApproveSignatures.groovy'))
     }
 }

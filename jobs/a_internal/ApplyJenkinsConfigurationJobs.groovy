@@ -10,6 +10,6 @@ job("internal/ApplyConfiguration") {
         timestamps()
     }
     steps {
-        systemGroovyScriptFile('groovy-scripts/ApplyJenkinsConfiguration.groovy')
+        systemGroovyScriptFile(readFileFromWorkspace('groovy-scripts/ApplyJenkinsConfiguration.groovy'))
     }
 }
