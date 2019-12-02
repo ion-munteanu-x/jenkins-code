@@ -1,6 +1,7 @@
 import jenkins.model.Jenkins
 
 def signatures = [
+        'jenkins.model.Jenkins getExtensionList java.lang.String',
         'new java.util.ArrayList',
         'method io.jenkins.plugins.casc.ConfigurationAsCode configure',
         'method jenkins.model.Jenkins getExtensionList java.lang.Class',

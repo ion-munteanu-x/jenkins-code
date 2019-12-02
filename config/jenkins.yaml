@@ -16,6 +16,9 @@ security:
   globalJobDslSecurityConfiguration:
     useScriptSecurity: false  
 unclassified:
+  scriptApproval:
+    approvedSignatures:
+      - staticMethod jenkins.model.Jenkins get
   globalLibraries:
     libraries:
       - name: "rs-library"
