@@ -5,6 +5,7 @@ jenkins:
       allowsSignup: false
       users:
         - id: admin
+          password: admin
 
   authorizationStrategy:
     globalMatrix:
