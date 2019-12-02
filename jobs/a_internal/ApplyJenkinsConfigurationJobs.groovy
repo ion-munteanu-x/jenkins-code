@@ -1,7 +1,7 @@
 import com.raresociopath.jenkins.dsl.DSLScm
 import com.raresociopath.jenkins.dsl.DSLParams
 
-job("internal/SignatureApprove") {
+job("internal/ApplyConfiguration") {
     parameters {
         def Params = DSLParams.get(delegate)            
         Params.dslVersion()
@@ -10,6 +10,6 @@ job("internal/SignatureApprove") {
         timestamps()
     }
     steps {
-        systemGroovyScriptFile('groovy-scripts/ApproveSignatures.groovy')
+        systemGroovyScriptFile('groovy-scripts/ApplyJenkinsConfiguration.groovy')
     }
 }
