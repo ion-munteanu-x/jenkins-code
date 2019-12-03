@@ -6,7 +6,7 @@ import static groovy.json.JsonOutput.toJson
 /**
  * Converts the given object to pretty printed JSON.
  *
- * @param object, to be converted
+ * @param object , to be converted
  *
  * @return pretty printed JSON version of the object
  *
@@ -16,8 +16,8 @@ import static groovy.json.JsonOutput.toJson
  */
 String call(def object) {
 
-  // ensure that all mandatory config parameters are set
-  checkParam(object?.toString(), 'The \'object\' to be converted to pretty printed JSON must be set.')
+    // ensure that all mandatory config parameters are set
+    checkParam(object?.toString(), 'The \'object\' to be converted to pretty printed JSON must be set.')
 
-  prettyPrint(toJson(object))
+    prettyPrint(toJson(object))
 }

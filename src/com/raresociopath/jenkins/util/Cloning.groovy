@@ -4,8 +4,8 @@ import com.raresociopath.jenkins.models.Repository
 
 class Cloning {
 
-    private Map<String, String> envvars;
-    private PrintStream logger;
+    private Map<String, String> envvars
+    private PrintStream logger
 
     String defaultCloneMethod = "ssh"
 

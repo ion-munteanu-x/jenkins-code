@@ -21,9 +21,9 @@ class Repositories {
             id       : 'rs-hello-world-2',
             humanName: 'HelloWorld2',
             distJobId: "$Jobs.BuildSimpleProjectsFolder/build-hello-world-2"
-    ])        
+    ])
 
     public List<Repositories> AllProjects = [
-            HelloWorldProject,HelloWorldProject2
-    ]    
+            HelloWorldProject, HelloWorldProject2
+    ]
 }

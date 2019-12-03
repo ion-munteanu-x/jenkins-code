@@ -9,7 +9,7 @@ global:
 
   repositories:
     - name: rs-jenkins-jobs
-      humanName: "Jenkins Jobs"    
+      humanName: "Jenkins Jobs"
     - name: rs-hello-world
       humanName: "Hello World Application"
       language: simple

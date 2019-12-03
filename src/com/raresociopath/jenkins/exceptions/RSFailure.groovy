@@ -6,6 +6,6 @@ class RSFailure extends Exception {
     }
 
     static void raise(String message, Throwable cause = null) throws RSFailure {
-        throw new RSFailure(message, cause);
+        throw new RSFailure(message, cause)
     }
 }

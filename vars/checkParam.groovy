@@ -12,7 +12,7 @@
  */
 def call(def param, String msg) {
 
-  if (!param?.trim()) {
-    error msg
-  }
+    if (!param?.trim()) {
+        error msg
+    }
 }

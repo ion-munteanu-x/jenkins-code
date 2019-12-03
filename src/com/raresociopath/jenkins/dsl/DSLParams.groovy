@@ -51,5 +51,5 @@ class DSLParams {
 
     def forceRebuild(defaultOne = false) {
         call('Force_Rebuild', defaultOne, 'Whether to force rebuild.')
-    }    
+    }
 }

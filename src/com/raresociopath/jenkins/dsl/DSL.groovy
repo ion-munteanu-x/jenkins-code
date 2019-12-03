@@ -11,8 +11,7 @@ class DSL {
         this.logger = envvars.get('out') as PrintStream
         this.dslUtil = new DSLScm(container)
     }
-
-
+    
     void pipeline(d, String name, version = null) {
         def jenkinsfileFullPath = "jenkinsfiles/$name"
         if (!jenkinsfileFullPath.endsWith("Jenkinsfile")) {

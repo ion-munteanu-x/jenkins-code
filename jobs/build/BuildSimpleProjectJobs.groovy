@@ -18,7 +18,7 @@ Repos.AllProjects.findAll { it.isSimpleProject() }.each { proj ->
         description("This project assumes that repository contains Dockerfile file in project's root")
         logRotator(7, 50)
         parameters {
-            def Param = DSLParams.get(delegate) 
+            def Param = DSLParams.get(delegate)
             Param.ref('Repo_Ref', proj)
             Param.forceRebuild()
             Param('Override_Docker_Image_Name', '', 'fill if you want to override default value, which is repository name')

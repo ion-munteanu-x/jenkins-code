@@ -1,15 +1,14 @@
 package com.raresociopath.jenkins.dsl
 
-import com.raresociopath.jenkins.util.Cloning
 import com.raresociopath.jenkins.data.Repositories
-
+import com.raresociopath.jenkins.util.Cloning
 
 class DSLScm {
 
     private Map<String, String> envvars
     private PrintStream logger
     private Cloning cloner
-    private Repositories repos = new Repositories();
+    private Repositories repos = new Repositories()
 
     DSLScm(container) {
         this.envvars = container.binding.variables

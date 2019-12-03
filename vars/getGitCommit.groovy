@@ -14,5 +14,5 @@
  */
 String call() {
 
-  getShOutput('git rev-parse HEAD')
+    getShOutput('git rev-parse HEAD')
 }

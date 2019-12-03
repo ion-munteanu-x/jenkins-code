@@ -14,7 +14,7 @@ jenkins:
         - "Overall/Administer:authenticated"
 security:
   globalJobDslSecurityConfiguration:
-    useScriptSecurity: false  
+    useScriptSecurity: false
 unclassified:
   globalLibraries:
     libraries:
