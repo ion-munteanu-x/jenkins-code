@@ -14,7 +14,22 @@ jenkins:
         - "Overall/Administer:authenticated"
 security:
   globalJobDslSecurityConfiguration:
-    useScriptSecurity: false  
+    useScriptSecurity: false
+credentials:
+  system:
+    domainCredentials:
+      - domain:
+          name: "raresociopath.com"
+          description: "raresociopath domain"
+          specifications:
+            - hostnameSpecification:
+                includes: "*.raresociopath.com"
+        credentials:
+          - usernamePassword:
+              scope: SYSTEM
+              id: rs-docker-hub
+              username: raresociopath
+              password: ${SUDO_PASSWORD}
 unclassified:
   globalLibraries:
     libraries:
