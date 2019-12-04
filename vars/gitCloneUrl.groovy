@@ -17,3 +17,4 @@ String call(repo) {
             "https://${env.SCM_SERVER}/raresociopath/${repo}.git".toString()
         }
     }
+}
