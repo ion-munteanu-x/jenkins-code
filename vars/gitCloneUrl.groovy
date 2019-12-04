@@ -1,3 +1,5 @@
+import com.raresociopath.jenkins.models.Repository
+
 String call(String repo) {
 
 //    checkParam(env.SCM_CLONE_METHOD, 'Please set the SCM_CLONE_METHOD build parameter!')
@@ -9,11 +11,13 @@ String call(String repo) {
         cloneMethod = 'ssh'
     }
 
-//    info(ProductRepository.reposMapByName)
-
-    if (cloneMethod == 'ssh') {
-        "git@${env.SCM_SERVER}:raresociopath/${repo}.git".toString()
+    if (repo instanceof Repository) {
+        repo.cloneUrl(cloneMethod == 'ssh', env.SCM_SERVER)
     } else {
-        "https://${env.SCM_SERVER}/raresociopath/${repo}.git".toString()
+        if (cloneMethod == 'ssh') {
+            "git@${env.SCM_SERVER}:raresociopath/${repo}.git".toString()
+        } else {
+            "https://${env.SCM_SERVER}/raresociopath/${repo}.git".toString()
+        }
     }
 }
