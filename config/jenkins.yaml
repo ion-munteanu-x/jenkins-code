@@ -1,11 +1,15 @@
 jenkins:
   systemMessage: "RS Jenkins"
+  numExecutors: 25
+  scmCheckoutRetryCount: 10 
   securityRealm:
     local:
       allowsSignup: false
       users:
         - id: admin
           password: admin
+        - id: test
+          password: ""          
 
   authorizationStrategy:
     globalMatrix:
