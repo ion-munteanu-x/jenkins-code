@@ -15,7 +15,7 @@ class Cloning {
     }
 
     String cloneUrl(Repository repo) {
-        String cloneMethod = envvars.get('SCM_CLONE_METHOD').toLowerCase()
+        String cloneMethod = envvars.get('SCM_CLONE_METHOD')
         if (!(cloneMethod == 'ssh' || cloneMethod == 'https')) {
             logger.println("ERROR: clone method not set as SCM_CLONE_METHOD variable, fallback to $defaultCloneMethod")
             cloneMethod = defaultCloneMethod
