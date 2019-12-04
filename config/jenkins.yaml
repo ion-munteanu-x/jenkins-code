@@ -18,18 +18,13 @@ security:
 credentials:
   system:
     domainCredentials:
-      - domain:
-          name: "raresociopath.com"
-          description: "raresociopath domain"
-          specifications:
-            - hostnameSpecification:
-                includes: "*.raresociopath.com"
-        credentials:
+      - credentials:
           - usernamePassword:
-              scope: SYSTEM
-              id: rs-docker-hub
-              username: raresociopath
-              password: ${SUDO_PASSWORD}
+              scope: GLOBAL
+              id: "rs-docker-hub"
+              username: "raresociopath"
+              password: ${SomeUserPassword} #Load from Environment Variable
+              description: "Username/Password Credentials for docker"
 unclassified:
   globalLibraries:
     libraries:
