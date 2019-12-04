@@ -1,8 +1,6 @@
 import com.raresociopath.jenkins.models.Repository
 
-String call(String repo) {
-
-//    checkParam(env.SCM_CLONE_METHOD, 'Please set the SCM_CLONE_METHOD build parameter!')
+String call(repo) {
     checkParam(env.SCM_SERVER, 'Please set the SCM_SERVER build parameter!')
     checkParam(env.SCM_CLONE_METHOD, 'Please set the SCM_CLONE_METHOD build parameter!')
 
@@ -19,4 +17,3 @@ String call(String repo) {
             "https://${env.SCM_SERVER}/raresociopath/${repo}.git".toString()
         }
     }
-}
