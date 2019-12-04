@@ -42,3 +42,10 @@ unclassified:
     elements:
       - cssUrl:
           url: "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-blue.css"
+groovy:
+  - script: >
+      import jenkins.model.Jenkins;
+
+      // trigger configuration
+      def jcacPlugin = Jenkins.instance.getExtensionList(io.jenkins.plugins.casc.ConfigurationAsCode.class).first()
+      jcacPlugin.configure()
