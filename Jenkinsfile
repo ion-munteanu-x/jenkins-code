@@ -1,3 +1,4 @@
+@Library("rs-pipelines@feature/10") _
 node {
     timeout(time: 60, unit: 'MINUTES') {
             timestamps {
@@ -15,6 +16,7 @@ void doWork(cfg) {
     }
     stage("Seed Configuration"){
          sh("cp config/jenkins.yaml ${JENKINS_HOME}/jenkins.yaml")
+         load("groovy-scripts/ApplyJenkinsConfiguration.groovy")
     }    
     stage("Seed Jobs"){
         jobDsl targets: 'jobs/**/*Jobs.groovy', additionalClasspath: 'src/'
