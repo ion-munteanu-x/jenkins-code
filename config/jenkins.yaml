@@ -2,23 +2,17 @@ jenkins:
   systemMessage: "RS Jenkins"
   numExecutors: 25
   scmCheckoutRetryCount: 10 
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+        - "Overall/Read:authenticated"
+        - "Overall/Administer:authenticated"
   securityRealm:
     local:
       allowsSignup: false
       users:
         - id: admin
           password: admin
-        - id: test
-          password: ""          
-
-  authorizationStrategy:
-    globalMatrix:
-      permissions:
-        - "Overall/Read:anonymous"
-        - "Overall/Administer:authenticated"
-security:
-  globalJobDslSecurityConfiguration:
-    useScriptSecurity: false
 credentials:
   system:
     domainCredentials:
@@ -28,7 +22,10 @@ credentials:
               id: "rs-docker-hub"
               username: "raresociopath"
               password: ${DOCKER_PASSWORD} #Load from Environment Variable
-              description: "Username/Password Credentials for docker"
+              description: "Username/Password Credentials for docker"          
+security:
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: false
 unclassified:
   globalLibraries:
     libraries:
