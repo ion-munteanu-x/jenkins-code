@@ -11,7 +11,7 @@ String call(String repo) {
         cloneMethod = 'ssh'
     }
     if (repo instanceof Repository) {
-        repo.cloneUrl(cloneMethod == 'ssh', env.SCM_SERVER == "github.com")
+        repo.cloneUrl(cloneMethod == 'ssh', env.SCM_SERVER)
     } else {
         if (cloneMethod == 'ssh') {
             "git@${env.SCM_SERVER}:raresociopath/${repo}.git".toString()
