@@ -1,5 +1,5 @@
 jenkins:
-  systemMessage: "RS Jenkins"
+  systemMessage: "RS TEST"
   numExecutors: 25
   scmCheckoutRetryCount: 10 
   authorizationStrategy:
@@ -41,4 +41,4 @@ unclassified:
   simple-theme-plugin:
     elements:
       - cssUrl:
-          url: "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-indigo.css"
+          url: "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-blue.css"
