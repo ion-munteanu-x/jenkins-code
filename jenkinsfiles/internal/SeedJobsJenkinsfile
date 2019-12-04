@@ -1,9 +1,12 @@
+import com.raresociopath.jenkins.data.Repositories
+
 node {
     timeout(time: 60, unit: 'MINUTES') {
             timestamps {
+                def Repos = new Repositories()
                 def cfg = [
                         ref         : env.Dsl_Version,
-                        url         : gitCloneUrl('rs-pipelines'),
+                        url         : gitCloneUrl(Repos.JenkinsJobs),
                         scmCredsId  : env.SCM_CREDENTIALS_ID,
                 ]
                 doWork(cfg)
