@@ -55,4 +55,4 @@ groovy:
       def scriptApproval = Jenkins.get().getExtensionList("org.jenkinsci.plugins.scriptsecurity.scripts.ScriptApproval")[0]
       signatures.each {
           scriptApproval.approveSignature(it)
-}
+      }
