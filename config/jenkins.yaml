@@ -23,7 +23,7 @@ credentials:
               scope: GLOBAL
               id: "rs-docker-hub"
               username: "raresociopath"
-              password: ${SomeUserPassword} #Load from Environment Variable
+              password: ${DOCKER_PASSWORD} #Load from Environment Variable
               description: "Username/Password Credentials for docker"
 unclassified:
   globalLibraries:
@@ -40,4 +40,4 @@ unclassified:
   simple-theme-plugin:
     elements:
       - cssUrl:
-          url: "https://raw.githubusercontent.com/raresociopath/rs-pipelines/master/config/theme/rs.css"
+          url: "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-indigo.css"
