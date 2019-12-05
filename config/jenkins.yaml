@@ -23,7 +23,8 @@ jenkins:
             permissions:
               - "Overall/Read"
             assignments:
-              - "java-developer"                       
+              - "java-developer"
+              - "hello"      
         items:
           - name: "jenkins-dev"
             description: "All jobs needed for development of jobs"
@@ -41,6 +42,7 @@ jenkins:
               - "Job/Build"
             assignments:
               - "java-developer"
+              - "hello"
   securityRealm:
     local:
       allowsSignup: false
