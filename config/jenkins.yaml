@@ -21,7 +21,7 @@ jenkins:
         items:
           - name: "build"
             description: "Jobs in Folder Build"
-            pattern: "build/.*"
+            pattern: "build.*"
             permissions:
               - "Job/Read"
               - "Job/Build"
