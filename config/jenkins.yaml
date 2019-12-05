@@ -1,6 +1,6 @@
 jenkins:
   systemMessage: "RS Jenkins Pipelines"
-  numExecutors: 25
+  numExecutors: 10
   scmCheckoutRetryCount: 10 
   authorizationStrategy:
     roleBased:
