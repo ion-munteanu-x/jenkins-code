@@ -17,25 +17,23 @@ jenkins:
             permissions:
               - "Overall/Read"
             assignments:
-              - "developers"              
+              - "java-developer"              
         items:
           - name: "build"
             description: "Jobs in Folder Build"
             pattern: "build/.*"
             permissions:
-              - "Overall/Read"
               - "Job/Read"
               - "Job/Build"
             assignments:
-              - "developer"
+              - "java-developer"
   securityRealm:
     local:
       allowsSignup: false
       users:
         - id: admin
           password: admin
-        - id: developer
-          password: dev          
+        - id: java-developer 
 credentials:
   system:
     domainCredentials:
