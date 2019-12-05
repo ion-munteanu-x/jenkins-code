@@ -16,7 +16,6 @@ void doWork(cfg) {
     }
     stage("Seed Configuration"){
          sh("cp config/jenkins.yaml ${JENKINS_HOME}/jenkins.yaml")
-         load("groovy-scripts/ApproveSignatures.groovy")
          load("groovy-scripts/ApplyJenkinsConfiguration.groovy")
     }    
     stage("Seed Jobs"){
