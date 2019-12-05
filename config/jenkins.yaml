@@ -16,6 +16,8 @@ jenkins:
             description: "Developers"
             permissions:
               - "Overall/Read"
+            assignments:
+              - "developer"              
         items:
           - name: "build"
             description: "Jobs in Folder Build"
