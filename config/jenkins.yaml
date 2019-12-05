@@ -56,27 +56,6 @@ jenkins:
   markupFormatter:
     rawHtml:
       disableSyntaxHighlighting: false
-plugins:
-  required:
-    job-dsl: latest
-    slack: latest
-    ansible: latest
-    ansicolor: latest
-    amazon-ecr: latest
-    envinject: latest
-    http_request: latest
-    htmlpublisher: latest
-    locale: latest
-    workflow-aggregator: latest
-    pipeline-utility-steps: latest
-    pipeline-aws: latest
-    rebuild: latest
-    sbt: latest
-    text-file-operations: latest
-    timestamper: latest
-    lockable-resources: latest
-    ssh-credentials: latest
-
 credentials:
   system:
     domainCredentials:
