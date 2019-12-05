@@ -33,7 +33,8 @@ jenkins:
       users:
         - id: admin
           password: admin
-        - id: java-developer 
+        - id: java-developer
+          password: java     
 credentials:
   system:
     domainCredentials:
