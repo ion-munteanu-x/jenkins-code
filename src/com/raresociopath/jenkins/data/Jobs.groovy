@@ -8,6 +8,7 @@ class Jobs {
     public String BuildSimpleProjectsFolder = "$BuildJobsFolder/build-simple-projects-folder"
 
     //jobs
+    public String ApproveSignaturesJobName = "$InternalJobsFolder/approve-signatures"
 
     //internal
     public String SeedCustom = "$InternalJobsFolder/seed-custom"
