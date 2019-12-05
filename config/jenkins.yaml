@@ -26,8 +26,8 @@ jenkins:
               - "java-developer"                       
         items:
           - name: "jenkins-dev"
-            description: "All jobs except Seed"
-            pattern: "build.* internal.*"
+            description: "All jobs needed for development of jobs"
+            pattern: (build|internal).*
             permissions:
               - "Job/Read"
               - "Job/Build"
