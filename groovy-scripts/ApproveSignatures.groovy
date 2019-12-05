@@ -1,11 +1,9 @@
 import jenkins.model.Jenkins
 
 def signatures = [
-        'jenkins.model.Jenkins getExtensionList java.lang.String',
-        'new java.util.ArrayList',
-        'method io.jenkins.plugins.casc.ConfigurationAsCode configure',
-        'method jenkins.model.Jenkins getExtensionList java.lang.Class',
         'staticMethod jenkins.model.Jenkins getInstance',
+        'method jenkins.model.Jenkins getExtensionList java.lang.Class',
+        'method io.jenkins.plugins.casc.ConfigurationAsCode configure',
 ]
 def scriptApproval = Jenkins.get().getExtensionList("org.jenkinsci.plugins.scriptsecurity.scripts.ScriptApproval")[0]
 signatures.each {
