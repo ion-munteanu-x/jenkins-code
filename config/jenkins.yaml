@@ -12,13 +12,27 @@ jenkins:
               - "Overall/Administer"
             assignments:
               - "admin"
+          - name: "jenkins-developer"
+            description: "Jenkins developers"
+            permissions:
+              - "Overall/Read"
+            assignments:
+              - "jenkins-developer"              
           - name: "developers"
             description: "Developers"
             permissions:
               - "Overall/Read"
             assignments:
-              - "java-developer"              
+              - "java-developer"                       
         items:
+          - name: "jenkins-dev"
+            description: "All jobs except Seed"
+            pattern: "build.* internal.*"
+            permissions:
+              - "Job/Read"
+              - "Job/Build"
+            assignments:
+              - "jenkins-developer"        
           - name: "build"
             description: "Jobs in Folder Build"
             pattern: "build.*"
@@ -33,6 +47,8 @@ jenkins:
       users:
         - id: admin
           password: admin
+        - id: jenkins-developer
+          password: jenkins             
         - id: java-developer
           password: java     
 credentials:
