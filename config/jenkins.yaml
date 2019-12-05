@@ -12,18 +12,16 @@ jenkins:
               - "Overall/Administer"
             assignments:
               - "admin"
-          - name: "readonly"
-            description: "Read-only users"
+          - name: "developers"
+            description: "Developers"
             permissions:
               - "Overall/Read"
-              - "Job/Read"
-            assignments:
-              - "authenticated"
         items:
           - name: "build"
             description: "Jobs in Folder Build"
-            pattern: "build/.*"
+            pattern: "build/*"
             permissions:
+              - "Job/Read"
               - "Job/Build"
             assignments:
               - "developer"
