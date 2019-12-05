@@ -85,6 +85,7 @@ unclassified:
     elements:
       - cssUrl:
           url: "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-indigo.css"
+tool:          
   jdk:
     defaultProperties:
       - installSource:
