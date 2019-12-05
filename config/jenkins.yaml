@@ -1,7 +1,14 @@
 jenkins:
   systemMessage: "RS Jenkins Pipelines"
   numExecutors: 10
-  scmCheckoutRetryCount: 10 
+  scmCheckoutRetryCount: 10
+  disableRememberMe: false
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
+  agentProtocols:
+    - JNLP4-connect
+    - Ping      
   authorizationStrategy:
     roleBased:
       roles:
