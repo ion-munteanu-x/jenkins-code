@@ -41,18 +41,4 @@ unclassified:
   simple-theme-plugin:
     elements:
       - cssUrl:
-          url: "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-green.css"
-groovy:
-  - script: >
-      import jenkins.model.Jenkins;
-
-      def signatures = [
-              'staticMethod jenkins.model.Jenkins get',
-              'method jenkins.model.Jenkins getExtensionList java.lang.String',
-              'method org.jenkinsci.plugins.scriptsecurity.scripts.ScriptApproval approveSignature java.lang.String'
-      ]
-
-      def scriptApproval = Jenkins.get().getExtensionList("org.jenkinsci.plugins.scriptsecurity.scripts.ScriptApproval")[0]
-      signatures.each {
-          scriptApproval.approveSignature(it)
-      }
+          url: "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-gree.css"
