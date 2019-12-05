@@ -4,6 +4,7 @@ import com.raresociopath.jenkins.dsl.DSLParams
 import static com.raresociopath.jenkins.data.StaticData.Jobs
 
 job(Jobs.ApproveSignaturesJobName) {
+    displayName("Approve Signatures")
     jdk('java')
     parameters {
         def Params = DSLParams.get(delegate)            
