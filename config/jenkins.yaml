@@ -16,25 +16,25 @@ jenkins:
             description: "Read-only users"
             permissions:
               - "Overall/Read"
-              - "Job/Read"
             assignments:
               - "authenticated"
         items:
           - name: "build"
-            description: "Jobs in Folder A, but not the folder itself"
+            description: "Jobs in Folder Build"
             pattern: "build/.*"
             permissions:
               - "Job/Build"
+              - "Job/Read"
             assignments:
-              - "test"
+              - "developer"
   securityRealm:
     local:
       allowsSignup: false
       users:
         - id: admin
           password: admin
-        - id: test
-          password: test          
+        - id: developer
+          password: dev          
 credentials:
   system:
     domainCredentials:
