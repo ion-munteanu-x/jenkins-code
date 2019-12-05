@@ -52,7 +52,11 @@ jenkins:
         - id: jenkins-developer
           password: jenkins             
         - id: java-developer
-          password: java     
+          password: java
+  markupFormatter:
+    rawHtml:
+      disableSyntaxHighlighting: false
+
 credentials:
   system:
     domainCredentials:
