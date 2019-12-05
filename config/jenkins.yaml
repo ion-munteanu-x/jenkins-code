@@ -3,16 +3,38 @@ jenkins:
   numExecutors: 25
   scmCheckoutRetryCount: 10 
   authorizationStrategy:
-    globalMatrix:
-      permissions:
-        - "Overall/Read:authenticated"
-        - "Overall/Administer:authenticated"
+    roleBased:
+      roles:
+        global:
+          - name: "admin"
+            description: "Jenkins administrators"
+            permissions:
+              - "Overall/Administer"
+            assignments:
+              - "admin"
+          - name: "readonly"
+            description: "Read-only users"
+            permissions:
+              - "Overall/Read"
+              - "Job/Read"
+            assignments:
+              - "authenticated"
+        items:
+          - name: "build"
+            description: "Jobs in Folder A, but not the folder itself"
+            pattern: "build/.*"
+            permissions:
+              - "Job/Build"
+            assignments:
+              - "test"
   securityRealm:
     local:
       allowsSignup: false
       users:
         - id: admin
           password: admin
+        - id: test
+          password: test          
 credentials:
   system:
     domainCredentials:

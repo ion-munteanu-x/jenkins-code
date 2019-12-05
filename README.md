@@ -24,6 +24,7 @@ Jenkins Pipelines based on DSL plugin.
 <li>Environment Injector Plugin</li>
 <li>user build vars plugin</li>
 <li>Pipeline Utility Steps</li>
+<li>Role-based Authorization Strategy</li>
 <li>Simple Theme Plugin</li>
 </ul>
 
