@@ -17,13 +17,13 @@ class Repositories {
             humanName: 'Hello World App',
             distJobId: "$Jobs.BuildSimpleProjectsFolder/build-hello-world"
     ])
-    public def HelloWorldProject2 = new Repository(simpleProject + [
-            id       : 'rs-hello-world-2',
-            humanName: 'HelloWorld2',
-            distJobId: "$Jobs.BuildSimpleProjectsFolder/build-hello-world-2"
+    public def HelloHellProject = new Repository(simpleProject + [
+            id       : 'rs-hello-hell',
+            humanName: 'Hello Hell',
+            distJobId: "$Jobs.BuildSimpleProjectsFolder/build-hello-hell"
     ])        
 
     public List<Repositories> AllProjects = [
-            HelloWorldProject,HelloWorldProject2
+            HelloWorldProject,HelloHellProject
     ]    
 }
