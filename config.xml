@@ -8,7 +8,7 @@
        <configVersion>2</configVersion>
        <userRemoteConfigs>
          <hudson.plugins.git.UserRemoteConfig>
-           <url>https://github.com/raresociopath/rs-pipelines.git</url>
+           <url>https://github.com/raresociopath/rs-jenkins-code.git</url>
          </hudson.plugins.git.UserRemoteConfig>
        </userRemoteConfigs>
        <branches>

@@ -1,7 +1,7 @@
-# rs-pipelines
-Jenkins Pipelines based on DSL plugin.
+# rs-jenkins-code
+Jenkins Jenkins Code based on DSL plugin and Configuration as Code.
 
-## What is rs-pipelines?
+## What is rs-jenkins-code?
 <ul>
 <li>This repo is dedicated for devops/developers who are developing jenkins pipelines and want to keep everything as code. </li>
 <li>This repo is an example of jenkins pipeline development best practices. </li>

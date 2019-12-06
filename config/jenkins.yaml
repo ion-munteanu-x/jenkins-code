@@ -1,5 +1,5 @@
 jenkins:
-  systemMessage: "RS Jenkins Pipelines"
+  systemMessage: "RS Jenkins Code"
   numExecutors: 10
   scmCheckoutRetryCount: 10
   disableRememberMe: false
@@ -83,7 +83,7 @@ unclassified:
           modernSCM:
             scm:
               git:
-                remote: "https://github.com/raresociopath/rs-pipelines.git"
+                remote: "https://github.com/raresociopath/rs-jenkins-code.git"
                 #credentialsId: "no-cred"                
   simple-theme-plugin:
     elements:

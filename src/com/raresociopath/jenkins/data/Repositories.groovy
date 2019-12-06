@@ -9,7 +9,7 @@ class Repositories {
     private Map simpleProject = defaults + [language: 'simple']
 
     public def JenkinsJobs = new Repository(defaults + [
-            id       : 'rs-pipelines',
+            id       : 'rs-jenkins-code',
             humanName: 'JenkinsJobs',
     ])
     public def HelloWorldProject = new Repository(simpleProject + [
