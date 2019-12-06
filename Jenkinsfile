@@ -18,7 +18,10 @@ void doWork(cfg) {
          sh("cp config/jenkins.yaml ${JENKINS_HOME}/jenkins.yaml")
          load("groovy-scripts/ApproveSignatures.groovy")
          load("groovy-scripts/ApplyJenkinsConfiguration.groovy")
-    }    
+    }
+    stage("Cleanup Jobs"){
+         load("groovy-scripts/RemoveAll.groovy")
+    }        
     stage("Seed Jobs"){
         jobDsl targets: 'jobs/**/*Jobs.groovy', additionalClasspath: 'src/'
     }  
