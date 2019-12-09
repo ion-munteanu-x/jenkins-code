@@ -3,17 +3,15 @@ Jenkins Jenkins Code based on DSL plugin and Configuration as Code.
 
 ## What is rs-jenkins-code?
 <ul>
-<li>This repo is dedicated for devops/developers who are developing jenkins pipelines and want to keep everything as code. </li>
-<li>This repo is an example of jenkins pipeline development best practices. </li>
-<li>This repo contains many things that you can already use in your project. See [pipelines] </li>
+<li>This repo is dedicated for devops/developers who are developing jenkins pipelines and want to keep everything as code including Pipelines and Configuration of Jenkins.</li>
+<li>This repo is an example of jenkins as code best practices. </li>
 </ul>
 
 ## How it works?
 <ul>
 <li>If you have a clean instance of jenkins, first step would be to install required plugins, enumarated here: [Jenkins plugins required]</li>
-<li>Second step is to import this repo as Global Library in Jenkins</li>
-<li>Third step is to manually create a Freestyle job called Seed indicating dsl repo to this one and run the pipeline.</li>
-<li>Voila, all your pipelines will be generated from this repo.</li>
+<li>Second step is to create a project of type Pipeline named Seed and in the properties choose Pipeline script from scm specifying this repo.</li>
+<li>Run</li>
 
 ## Jenkins plugins required:
 <ul>
