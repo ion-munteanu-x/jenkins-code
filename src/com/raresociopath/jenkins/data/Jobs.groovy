@@ -18,6 +18,6 @@ class Jobs {
     public String BuildSimpleProject = "$BuildSimpleProjectsFolder/build-simple"
 
     //test
-    public String TestJob = "test"
+    public String TestJob = "$TestJobsFolder/test"
 
 }
