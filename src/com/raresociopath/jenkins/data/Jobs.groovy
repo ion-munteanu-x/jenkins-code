@@ -17,4 +17,7 @@ class Jobs {
     //build
     public String BuildSimpleProject = "$BuildSimpleProjectsFolder/build-simple"
 
+    //test
+    public String TestJob = "test"
+
 }
