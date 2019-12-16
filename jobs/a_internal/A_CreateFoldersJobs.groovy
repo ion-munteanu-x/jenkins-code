@@ -10,7 +10,7 @@ folder(Jobs.BuildJobsFolder) {
     description('This folder contains build jobs.')
 }
 
-folder(Jobs.BuildJobsFolder) {
+folder(Jobs.TestJobsFolder) {
     displayName('test')
     description('This folder contains test jobs.')
 }

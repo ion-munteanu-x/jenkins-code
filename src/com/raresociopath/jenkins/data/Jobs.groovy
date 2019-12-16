@@ -5,6 +5,7 @@ class Jobs {
     //folders
     public String InternalJobsFolder = "internal"
     public String BuildJobsFolder = "build"
+    public String TestJobsFolder = "test"
     public String BuildSimpleProjectsFolder = "$BuildJobsFolder/build-simple-projects-folder"
 
     //jobs
