@@ -1,0 +1,31 @@
+import com.raresociopath.jenkins.data.Repositories
+
+node {
+    timeout(time: 60, unit: 'MINUTES') {
+            timestamps {
+                def Repos = new Repositories()
+                def cfg = [
+                        ref         : env.Dsl_Version,
+                        url         : gitCloneUrl(Repos.JenkinsJobs),
+                        scmCredsId  : env.SCM_CREDENTIALS_ID,
+                        test_string : env.test_string,
+                
+                ]
+                doWork(cfg)
+            }
+    }
+}
+
+void doWork(cfg) {
+
+    stage("Checkout"){
+        deleteDir()
+        envInfo()
+        appendComment("Working with version <b>${cfg.ref}</b>")
+    }
+
+    stage("Seed DSL Jobs") {
+        getShOutput("echo Hello World")
+        getShOutput("echo ${test_string}")
+    }
+}
