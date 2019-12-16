@@ -6,7 +6,7 @@ import com.raresociopath.jenkins.util.Cloning
 
 import static com.raresociopath.jenkins.data.StaticData.Jobs
 
-pipelineJob(proj.distJobId) {
+pipelineJob(Jobs.TestJobsFolder) {
         displayName("Build TEST")
         description("This is a test job")
         logRotator(7, 50)
