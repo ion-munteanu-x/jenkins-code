@@ -26,6 +26,6 @@ void doWork(cfg) {
 
     stage("Seed DSL Jobs") {
         getShOutput("echo Hello World")
-        getShOutput("echo ${test_string}")
+        getShOutput("echo ${test_string}", true)
     }
 }
