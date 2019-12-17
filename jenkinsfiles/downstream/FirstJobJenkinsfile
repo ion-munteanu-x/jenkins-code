@@ -1,5 +1,5 @@
 import com.raresociopath.jenkins.data.Repositories
-import static com.raresociopath.jenkins.data.StaticData.Jobs
+import static com.raresociopath.jenkins.data.Jobs
 
 node {
     timeout(time: 60, unit: 'MINUTES') {
