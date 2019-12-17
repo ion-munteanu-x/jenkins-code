@@ -23,10 +23,10 @@ void doWork(cfg) {
     }
 
     stage("other") {
-        getShOutput("echo ${other_string}", true)
+        getShOutput("echo ${cfg.other_string}", true)
     }
     
     stage("delegated") {
-        getShOutput("echo ${delegated_string}", true)
+        getShOutput("echo ${cfg.delegated_string}", true)
     }
 }

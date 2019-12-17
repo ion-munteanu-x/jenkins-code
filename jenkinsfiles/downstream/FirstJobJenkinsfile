@@ -23,15 +23,15 @@ void doWork(cfg) {
 
     stage("first job") {
         getShOutput("echo Hello World", true)
-        getShOutput("echo ${test_string}", true)
+        getShOutput("echo ${cfg.test_string}", true)
     }
 
     
     stage("calling second job") {
         def deployParams = [
-            delegated_string : ${test_string},
+            delegated_string : cfg.test_string,
             other_string : "my name is Kapar",
-            Dsl_Version : ${ref}
+            Dsl_Version : cfg.ref
         ]
         def result = build job: Jobs.HelmDeployServices, parameters: deployParams
 
