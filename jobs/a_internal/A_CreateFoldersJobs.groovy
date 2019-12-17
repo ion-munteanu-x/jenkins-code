@@ -15,6 +15,11 @@ folder(Jobs.TestJobsFolder) {
     description('This folder contains test jobs.')
 }
 
+folder(Jobs.DownstreamJobsFolder) {
+    displayName('downstream')
+    description('This folder contains test jobs.')
+}
+
 folder(Jobs.BuildSimpleProjectsFolder) {
     displayName('Build Simple Projects')
     description('This folder contains build jobs for projects that have Dockerfile at the root of the repository.')
