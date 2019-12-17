@@ -15,7 +15,7 @@ pipelineJob(Jobs.DownstreamJob1) {
             Param('test_string', '', 'this string will be printed')
             Param.dslVersion()
         }
-        new DSL(this).pipeline(delegate, 'Downstream/FirstJob', '${Dsl_Version}')
+        new DSL(this).pipeline(delegate, 'downstream/FirstJob', '${Dsl_Version}')
     }
 
 pipelineJob(Jobs.DownstreamJob2) {
@@ -28,5 +28,5 @@ pipelineJob(Jobs.DownstreamJob2) {
             Param('other_string', '', 'this string will be printed')
             Param.dslVersion()
         }
-        new DSL(this).pipeline(delegate, 'Downstream/SecondJob', '${Dsl_Version}')
+        new DSL(this).pipeline(delegate, 'downstream/SecondJob', '${Dsl_Version}')
     }

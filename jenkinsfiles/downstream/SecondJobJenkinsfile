@@ -8,7 +8,7 @@ node {
                         ref           : env.Dsl_Version,
                         url           : gitCloneUrl(Repos.JenkinsJobs),
                         scmCredsId    : env.SCM_CREDENTIALS_ID,
-                        other_string  : env.other_string
+                        other_string  : env.other_string,
                         delegated_string  : env.delegated_string
                 ]
                 doWork(cfg)

@@ -30,10 +30,10 @@ void doWork(cfg) {
     
     stage("calling second job") {
         def deployParams = [
-            delegated_string : ${test_string}
+            delegated_string : ${test_string},
             other_string: "my name is Kapar"
         ]
-        def result = build job: Jobs.HelmDeployServices, parameters: deployParams, propagate: false
+        def result = build job: Jobs.HelmDeployServices, parameters: deployParams
 
     }
 }
