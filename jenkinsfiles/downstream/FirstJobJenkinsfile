@@ -1,4 +1,5 @@
 @Library("rs-library@feature/test-job") _
+
 import static com.raresociopath.jenkins.data.StaticData.Jobs
 
 node {
@@ -34,7 +35,7 @@ void doWork(cfg) {
             other_string : "my name is Kapar",
             Dsl_Version : cfg.ref
         ])
-        def result = build job: Jobs.DownstreamJob2, parameters: deployParams
+        def result = build job: ${Jobs.downstreamJob2}, parameters: deployParams
 
     }
 }

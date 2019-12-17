@@ -20,6 +20,8 @@ class Jobs {
 
     //test
     public String TestJob = "$TestJobsFolder/test"
+    
+    //downstream
     public String DownstreamJob1 = "$DownstreamJobsFolder/downstreamJob1"
     public String DownstreamJob2 = "$DownstreamJobsFolder/downstreamJob2"
 
