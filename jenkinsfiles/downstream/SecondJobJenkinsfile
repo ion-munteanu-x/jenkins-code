@@ -1,0 +1,34 @@
+import com.raresociopath.jenkins.data.Repositories
+
+node {
+    timeout(time: 60, unit: 'MINUTES') {
+            timestamps {
+                def Repos = new Repositories()
+                def cfg = [
+                        ref           : env.Dsl_Version,
+                        url           : gitCloneUrl(Repos.JenkinsJobs),
+                        scmCredsId    : env.SCM_CREDENTIALS_ID,
+                        other_string  : env.other_string
+                        delegated_string  : env.delegated_string
+                ]
+                doWork(cfg)
+            }
+    }
+}
+
+void doWork(cfg) {
+
+    stage("Checkout"){
+        deleteDir()
+        envInfo()
+        appendComment("Working with version <b>${cfg.ref}</b>")
+    }
+
+    stage("other") {
+        getShOutput("echo ${other_string}", true)
+    }
+    
+    stage("delegated") {
+        getShOutput("echo ${delegated_string}", true)
+    }
+}

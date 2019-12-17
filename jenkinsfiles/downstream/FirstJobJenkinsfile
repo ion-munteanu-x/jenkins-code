@@ -1,0 +1,39 @@
+import com.raresociopath.jenkins.data.Repositories
+
+node {
+    timeout(time: 60, unit: 'MINUTES') {
+            timestamps {
+                def cfg = [
+                        ref         : env.Dsl_Version,
+                        url         : gitCloneUrl(Repos.JenkinsJobs),
+                        scmCredsId  : env.SCM_CREDENTIALS_ID,
+                        test_string : env.test_string,
+                ]
+                doWork(cfg)
+            }
+    }
+}
+
+void doWork(cfg) {
+
+    stage("info"){
+        deleteDir()
+        envInfo()
+        appendComment("Working with version <b>${cfg.ref}</b>")
+    }
+
+    stage("first job") {
+        getShOutput("echo Hello World", true)
+        getShOutput("echo ${test_string}", true)
+    }
+
+    
+    stage("calling second job") {
+        def deployParams = [
+            delegated_string : ${test_string}
+            other_string: "my name is Kapar"
+        ]
+        def result = build job: Jobs.HelmDeployServices, parameters: deployParams, propagate: false
+
+    }
+}
