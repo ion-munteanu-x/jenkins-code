@@ -4,7 +4,7 @@ node {
     timeout(time: 60, unit: 'MINUTES') {
             timestamps {
                 def cfg = [
-                        ref         : env.Dsl_Version,
+                                  : env.Dsl_Version,
                         url         : gitCloneUrl(Repos.JenkinsJobs),
                         scmCredsId  : env.SCM_CREDENTIALS_ID,
                         test_string : env.test_string,
@@ -31,7 +31,8 @@ void doWork(cfg) {
     stage("calling second job") {
         def deployParams = [
             delegated_string : ${test_string},
-            other_string: "my name is Kapar"
+            other_string : "my name is Kapar",
+            Dsl_Version : ${ref}
         ]
         def result = build job: Jobs.HelmDeployServices, parameters: deployParams
 
