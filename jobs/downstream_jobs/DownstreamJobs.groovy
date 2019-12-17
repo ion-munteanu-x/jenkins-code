@@ -4,6 +4,7 @@ import com.raresociopath.jenkins.data.GlobalVars
 import com.raresociopath.jenkins.data.Repositories
 import com.raresociopath.jenkins.util.Cloning
 
+import static com.raresociopath.jenkins.data.StaticData.Jobs
 
 pipelineJob(Jobs.DownstreamJob1) {
         displayName("FirstJob")
