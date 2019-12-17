@@ -6,7 +6,7 @@ class Jobs {
     public String InternalJobsFolder = "internal"
     public String BuildJobsFolder = "build"
     public String TestJobsFolder = "test"
-    public String DownstreamJobsFolder = "Downstream"
+    public String DownstreamJobsFolder = "downstream"
     public String BuildSimpleProjectsFolder = "$BuildJobsFolder/build-simple-projects-folder"
 
     //jobs
@@ -20,7 +20,7 @@ class Jobs {
 
     //test
     public String TestJob = "$TestJobsFolder/test"
-    public String DownstreamJob1 = "$DownstreamJobsFolder/DownstreamJob1"
-    public String DownstreamJob2 = "$DownstreamJobsFolder/DownstreamJob2"
+    public String DownstreamJob1 = "$DownstreamJobsFolder/downstreamJob1"
+    public String DownstreamJob2 = "$DownstreamJobsFolder/downstreamJob2"
 
 }
