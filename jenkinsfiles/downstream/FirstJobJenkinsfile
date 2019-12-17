@@ -1,6 +1,3 @@
-import com.raresociopath.jenkins.data.Repositories
-import static com.raresociopath.jenkins.data.Jobs
-
 node {
     timeout(time: 60, unit: 'MINUTES') {
             timestamps {
@@ -29,11 +26,11 @@ void doWork(cfg) {
 
     
     stage("calling second job") {
-        def deployParams = [
+        def deployParams = renderParameters([
             delegated_string : cfg.test_string,
             other_string : "my name is Kapar",
             Dsl_Version : cfg.ref
-        ]
+        ])
         def result = build job: Jobs.DownstreamJob2, parameters: deployParams
 
     }
