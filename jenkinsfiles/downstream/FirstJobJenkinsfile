@@ -5,7 +5,6 @@ node {
             timestamps {
                 def cfg = [
                         ref         : env.Dsl_Version,
-                        url         : gitCloneUrl(Repos.JenkinsJobs),
                         scmCredsId  : env.SCM_CREDENTIALS_ID,
                         test_string : env.test_string,
                 ]
