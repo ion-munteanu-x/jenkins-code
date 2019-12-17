@@ -35,7 +35,8 @@ void doWork(cfg) {
             other_string : "my name is Kapar",
             Dsl_Version : cfg.ref
         ])
-        def result = build job: Jobs.downstreamJob2, parameters: deployParams
+        def jobName = new Jobs()
+        def result = build job: jobName.DownstreamJob2, parameters: deployParams
 
     }
 }
