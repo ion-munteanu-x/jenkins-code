@@ -1,3 +1,5 @@
+@Library("@feature/test-job") _
+
 node {
     timeout(time: 60, unit: 'MINUTES') {
             timestamps {
