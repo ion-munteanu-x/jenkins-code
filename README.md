@@ -9,9 +9,11 @@ Jenkins Jenkins Code based on DSL plugin and Configuration as Code.
 
 ## How it works?
 <ul>
-<li>If you have a clean instance of jenkins, first step would be to install required plugins, enumarated here: [Jenkins plugins required]</li>
-<li>Second step is to create a project of type Pipeline named Seed and in the properties choose Pipeline script from scm specifying this repo.</li>
-<li>Run</li>
+<li>1) Install required plugins, enumarated here: [Jenkins plugins required]</li>
+<li>2) Copy folder init.groovy.d inside your jenkins home. Restart Jenkins.
+<li>3) Create a job of type Pipeline named Seed from Jenkins UI with Pipeline script from scm definition specifying this repo.</li>
+<li>4) Run Seed job.</li>
+</ul>
 
 ## Jenkins plugins required:
 <ul>
@@ -31,3 +33,13 @@ Jenkins Jenkins Code based on DSL plugin and Configuration as Code.
 <li>Add SCM_CLONE_METHOD as Environment variable in Global Properties, can be either `ssh` or `https`</li>
 <li>Add SCM_SERVER as Environment variable in Global Properties, the format should be `github.com`</li>
 </ul>
+
+## Project Structure:
+<ul>
+<li>config/jenkins.yaml - Configuration of jenkins used by Jenkins Configuration as Code Plugin.</li>
+<li>jobs - Folder that contains all job interfaces processed by the dsl plugin.</li>
+<li>jenkinsfiles - Folder that contains all the jenkinsfiles to which job interfaces are delegating work.</li>
+<li>src - groovy classes used as helpers for the pipelines.</li>
+<li>vars - util functions. </li>
+</ul>
+
